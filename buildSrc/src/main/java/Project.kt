@@ -4,7 +4,7 @@ import Project.Channel.*
 import org.gradle.api.JavaVersion
 
 /**
- * An object containing params for the App.
+ * An object containing params for the Library
  *
  * @author Davide Giuseppe Farella
  */

@@ -12,7 +12,6 @@ val repos: RepositoryHandler.() -> Unit get() = {
     jcenter()
     mavenCentral()
     maven("https://kotlin.bintray.com/kotlinx" )
-    maven("https://maven.fabric.io/public" )
     // mavenLocal()
 }
 

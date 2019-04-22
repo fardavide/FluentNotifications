@@ -5,6 +5,7 @@ package studio.forface.fluentnotifications
 import android.content.Context
 import androidx.annotation.IntegerRes
 import androidx.annotation.StringRes
+import studio.forface.fluentnotifications.builder.*
 import studio.forface.fluentnotifications.enum.NotificationImportance
 import studio.forface.fluentnotifications.utils.Android
 import studio.forface.fluentnotifications.utils.notificationManager
@@ -70,11 +71,17 @@ fun Context.cancelNotification( id: Int, tag: String? = null ) {
 
 
 /** API test purpose only. TODO remove */
-fun Context.test() {
+private fun Context.test() {
     showNotification( 123, "someTag" ) {
 
-        importance = NotificationImportance.HIGH
-        channel( "channelId", "channelName" )
+        behaviour {
+            importance = NotificationImportance.HIGH
+            this + defaultVibration
+        }
+
+        channel( "channelId", "channelName" ) {
+            description = "No description"
+        }
 
         notification {
             smallIconRes = 0

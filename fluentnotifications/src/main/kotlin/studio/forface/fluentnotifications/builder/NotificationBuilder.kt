@@ -1,28 +1,28 @@
 @file:Suppress("MemberVisibilityCanBePrivate")
 
-package studio.forface.fluentnotifications
+package studio.forface.fluentnotifications.builder
 
 import android.app.Notification
 import android.content.Context
-import android.graphics.drawable.Drawable
+import android.graphics.Color
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.core.app.NotificationCompat
-import studio.forface.fluentnotifications.enum.NotificationImportance
-import studio.forface.fluentnotifications.utils.ResourcedBuilder
-import studio.forface.fluentnotifications.utils.invoke
-import studio.forface.fluentnotifications.utils.optional
-import studio.forface.fluentnotifications.utils.required
+import studio.forface.fluentnotifications.NotificationDsl
+import studio.forface.fluentnotifications.utils.*
 
 /**
  * A Builder for create a [Notification]
  * Inherit from [ResourcedBuilder] for provide `Resources`
  *
- * @constructor is internal. Instances will be created from [NotificationCoreBuilder] via [Context.showNotification]
- * @param context [Context] required for create [Notification] and for retrieve [String]s from `Resources`
+ * @constructor is internal. Instances will be created from [NotificationCoreBuilder] via `Context.showNotification`
+ * @param context [Context] required for [ResourcedBuilder] delegation
  * @param getParams lambda that returns [NotificationParams]
  *
  * @see NotificationDsl as [DslMarker]
+ *
+ *
+ * @author Davide Giuseppe Farella
  */
 @NotificationDsl
 class NotificationBuilder internal constructor(
@@ -66,7 +66,7 @@ class NotificationBuilder internal constructor(
      *
      * @see NotificationCompat.Builder.setContentTitle
      */
-    @get:StringRes var titleRes: Int? = null
+    @StringRes var titleRes: Int? = null
 
     /** A [NotificationCompat.Builder] for create a [Notification] */
     @Suppress( "DEPRECATION" ) /* NotificationCompat.Builder constructor without a Channel's id is deprecated. But we
@@ -75,18 +75,24 @@ class NotificationBuilder internal constructor(
 
     /** @return [Notification] with the params previously set */
     internal fun build(): Notification = with( getParams() ) {
-        return builder
+        return builder.run {
+            setChannelId( channelId )
 
             /* Behaviour */
-            .setChannelId( channelId )
-            .setPriority( importance.priorityPlatform )
+            priority = behaviour.importance.priorityPlatform
+            setLights( behaviour.lightColor ?: Color.BLACK, 300, 1000 )
+            setVibrate( behaviour.vibrationPattern )
 
             /* Style */
-            .setSmallIcon( smallIconRes )
-            .setContentTitle( title )
-            .apply { contentText?.let { setContentText( it ) } }
+            setSmallIcon( smallIconRes )
+            setContentTitle( title )
+            contentText?.let { setContentText( it ) }
 
-            .build()
+            /* Defaults */
+            setDefaults( behaviour.defaults )
+
+            build()
+        }
     }
 }
 
@@ -96,13 +102,15 @@ class NotificationBuilder internal constructor(
  * @property channelId [String] id of the `NotificationChannel`
  * @see NotificationCompat.Builder.setChannelId
  *
- * @property importance [NotificationBuilder] that contains priority for the [NotificationCompat]
- * @see NotificationCompat.Builder.setPriority
+ * @property behaviour [Behaviour] for [Notification]
  */
 internal data class NotificationParams(
     val channelId: String,
-    val importance: NotificationImportance
+    val behaviour: Behaviour
 )
 
 /** Typealias for call the constructor of [NotificationParams] like it's a function */
 internal typealias notificationParams = NotificationParams
+
+/** Typealias for a lambda that takes [NotificationBuilder] as receiver and returns [Unit] */
+typealias NotificationBlock = NotificationBuilder.() -> Unit

@@ -1,0 +1,69 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>NotificationBuilder - fluentnotifications</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">fluentnotifications</a>&nbsp;/&nbsp;<a href="../index.html">studio.forface.fluentnotifications.builder</a>&nbsp;/&nbsp;<a href="./index.html">NotificationBuilder</a><br/>
+<br/>
+<h1>NotificationBuilder</h1>
+<code><span class="keyword">class </span><span class="identifier">NotificationBuilder</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">ResourcedBuilder</span></code>
+<p>A Builder for create a <a href="https://developer.android.com/reference/android/app/Notification.html">Notification</a>
+Inherit from <a href="#">ResourcedBuilder</a> for provide <code>Resources</code></p>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="content-text.html">contentText</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">contentText</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-char-sequence/index.html"><span class="identifier">CharSequence</span></a><span class="symbol">?</span></code>
+<p>OPTIONAL <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-char-sequence/index.html">CharSequence</a> content text for the Notification
+Backed by <a href="content-text-res.html">contentTextRes</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="content-text-res.html">contentTextRes</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">contentTextRes</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">?</span></code>
+<p>OPTIONAL <a href="#">StringRes</a> content text for the Notification
+Backing value of <a href="content-text.html">contentText</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="small-icon-res.html">smallIconRes</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">smallIconRes</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
+<p>REQUIRED <a href="#">DrawableRes</a> of the small icon for the Notification</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="title.html">title</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">title</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-char-sequence/index.html"><span class="identifier">CharSequence</span></a></code>
+<p>REQUIRED <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-char-sequence/index.html">CharSequence</a> content title for the Notification
+Backed by <a href="title-res.html">titleRes</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="title-res.html">titleRes</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">titleRes</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">?</span></code>
+<p>REQUIRED <a href="#">StringRes</a> content title for the Notification
+Backing value of <a href="title.html">title</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

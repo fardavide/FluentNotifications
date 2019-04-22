@@ -1,0 +1,87 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>BehaviourBuilder - fluentnotifications</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">fluentnotifications</a>&nbsp;/&nbsp;<a href="../index.html">studio.forface.fluentnotifications.builder</a>&nbsp;/&nbsp;<a href="./index.html">BehaviourBuilder</a><br/>
+<br/>
+<h1>BehaviourBuilder</h1>
+<code><span class="keyword">class </span><span class="identifier">BehaviourBuilder</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">ResourcedBuilder</span></code>
+<p>A Builder for define a behaviour for Notification / Channel
+Inherit from <a href="#">ResourcedBuilder</a> for provide [Resources</p>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="importance.html">importance</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">importance</span><span class="symbol">: </span><a href="../../studio.forface.fluentnotifications.enum/-notification-importance/index.html"><span class="identifier">NotificationImportance</span></a></code>
+<p>REQUIRED <a href="../../studio.forface.fluentnotifications.enum/-notification-importance/index.html">NotificationImportance</a> importance for the <a href="https://developer.android.com/reference/android/app/NotificationChannel.html">NotificationChannel</a> on <a href="#">Android.OREO</a> or priority on for
+<a href="#">NotificationCompat</a> on pre-Oreo
+Default is <a href="../../studio.forface.fluentnotifications.enum/-notification-importance/-d-e-f-a-u-l-t.html">NotificationImportance.DEFAULT</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="light-color.html">lightColor</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">lightColor</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">?</span></code>
+<p>OPTIONAL <a href="#">ColorInt</a> for the Light color of the Notification / Channel
+Light will be automatically enabled / disabled whether this value is <code>null</code> or not</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="light-color-res.html">lightColorRes</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">lightColorRes</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">?</span></code>
+<p>OPTIONAL <a href="#">ColorInt</a> for the Light color of the Notification / Channel
+Light will be automatically enabled / disabled whether this value is <code>null</code> or not</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="vibration-pattern.html">vibrationPattern</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">vibrationPattern</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long-array/index.html"><span class="identifier">LongArray</span></a></code>
+<p>OPTIONAL <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long-array/index.html">LongArray</a> for the pattern of the vibration of the Notification / Channel
+Vibration will be automatically enabled / disable whether this <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long-array/index.html">LongArray</a> is empty or not</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Extension Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../default-vibration.html">defaultVibration</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><a href="./index.html"><span class="identifier">BehaviourBuilder</span></a><span class="symbol">.</span><span class="identifier">defaultVibration</span><span class="symbol">: </span><a href="../../studio.forface.fluentnotifications.enum/-default-behaviour/index.html"><span class="identifier">DefaultBehaviour</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Extension Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../plus.html">plus</a></p>
+</td>
+<td>
+<code><span class="keyword">operator</span> <span class="keyword">fun </span><a href="./index.html"><span class="identifier">BehaviourBuilder</span></a><span class="symbol">.</span><span class="identifier">plus</span><span class="symbol">(</span><span class="identifier" id="studio.forface.fluentnotifications.builder$plus(studio.forface.fluentnotifications.builder.BehaviourBuilder, studio.forface.fluentnotifications.enum.DefaultBehaviour)/default">default</span><span class="symbol">:</span>&nbsp;<a href="../../studio.forface.fluentnotifications.enum/-default-behaviour/index.html"><span class="identifier">DefaultBehaviour</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">BehaviourBuilder</span></a></code>
+<p>Plus operator for add the given <a href="../../studio.forface.fluentnotifications.enum/-default-behaviour/index.html">DefaultBehaviour</a> to <a href="#">BehaviourBuilder.defaults</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

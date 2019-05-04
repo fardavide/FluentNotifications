@@ -20,7 +20,7 @@ object Project {
     /* Publishing */
     val bintrayGroup =      "studio.forface"
     val groupId =           "$bintrayGroup.fluentnotifications"
-    val name =              "Fluent Notifications"
+    val name =              "FluentNotifications"
     val description =       ""
     val siteUrl =           "http://4face.studio"
     val gitUrl =            "https://github.com/4face-studi0/FluentNotifications"

@@ -1,0 +1,22 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>handle - fluentnotifications</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">fluentnotifications</a>&nbsp;/&nbsp;<a href="index.html">studio.forface.fluentnotifications.utils</a>&nbsp;/&nbsp;<a href="./handle.html">handle</a><br/>
+<br/>
+<h1>handle</h1>
+<a name="studio.forface.fluentnotifications.utils$handle(studio.forface.fluentnotifications.utils.handle.T, kotlin.Function1((kotlin.Throwable, kotlin.Unit)), kotlin.Function0((studio.forface.fluentnotifications.utils.handle.T)))"></a>
+<code><span class="keyword">inline</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">handle</span><span class="symbol">(</span><span class="identifier" id="studio.forface.fluentnotifications.utils$handle(studio.forface.fluentnotifications.utils.handle.T, kotlin.Function1((kotlin.Throwable, kotlin.Unit)), kotlin.Function0((studio.forface.fluentnotifications.utils.handle.T)))/default">default</span><span class="symbol">:</span>&nbsp;<a href="handle.html#T"><span class="identifier">T</span></a><span class="symbol">, </span><span class="identifier" id="studio.forface.fluentnotifications.utils$handle(studio.forface.fluentnotifications.utils.handle.T, kotlin.Function1((kotlin.Throwable, kotlin.Unit)), kotlin.Function0((studio.forface.fluentnotifications.utils.handle.T)))/catchBlock">catchBlock</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-throwable/index.html"><span class="identifier">Throwable</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a>&nbsp;<span class="symbol">=</span>&nbsp;{}<span class="symbol">, </span><span class="identifier" id="studio.forface.fluentnotifications.utils$handle(studio.forface.fluentnotifications.utils.handle.T, kotlin.Function1((kotlin.Throwable, kotlin.Unit)), kotlin.Function0((studio.forface.fluentnotifications.utils.handle.T)))/tryBlock">tryBlock</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="handle.html#T"><span class="identifier">T</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="handle.html#T"><span class="identifier">T</span></a></code>
+<p>Function that wraps a try/catch block for return a <a href="handle.html#studio.forface.fluentnotifications.utils$handle(studio.forface.fluentnotifications.utils.handle.T, kotlin.Function1((kotlin.Throwable, kotlin.Unit)), kotlin.Function0((studio.forface.fluentnotifications.utils.handle.T)))/default">default</a> value in case of Error</p>
+<h3>Parameters</h3>
+<p><a name="default"></a>
+<code>default</code> - <a href="handle.html#T">T</a> default value to be returned in case of Error</p>
+<p><a name="catchBlock"></a>
+<code>catchBlock</code> - an optional lambda that will be executed in case of Error</p>
+<p><a name="tryBlock"></a>
+<code>tryBlock</code> - a lambda that will run inside the try block</p>
+</BODY>
+</HTML>

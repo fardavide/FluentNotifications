@@ -7,3 +7,4 @@ $dokka.location:studio.forface.fluentnotifications$showNotification(android.cont
 studio.forface.fluentnotifications
 studio.forface.fluentnotifications.builder
 studio.forface.fluentnotifications.enum
+studio.forface.fluentnotifications.utils

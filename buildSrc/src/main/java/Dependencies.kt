@@ -51,18 +51,15 @@ object Versions {
 
     /* Base */
     val mockk =                         "1.9.3"
-    val threeten_android_bp =           "1.2.0"
-    val threeten_bp =                   "1.3.8"
-    val timber =                        "4.7.1"
 
     /* Android */
     val android_espresso =              "3.1.1"
     val android_gradle_plugin =         "3.3.0"
     val android_ktx =                   "1.1.0-alpha05"
     val android_robolectric =           "4.2.1"
+    val android_support =               "1.1.0-alpha02"
     val android_test_core =             "1.1.0"
     val android_test_runner =           "1.1.1"
-    val androidx_core =                 "1.0.1"
 
     /* Publishing */
     val publishing_bintray_plugin =     "1.8.4"
@@ -84,13 +81,10 @@ object Libs {
     /* Base */
     val mockk =                                 "io.mockk:mockk:${Versions.mockk}"
     val mockk_android =                         "io.mockk:mockk-android:${Versions.mockk}"
-    val threeten_android_bp =                   "com.jakewharton.threetenabp:threetenabp:${Versions.threeten_android_bp}"
-    val threeten_bp =                           "org.threeten:threetenbp:${Versions.threeten_bp}"
-    val timber_android =                        "com.jakewharton.timber:timber:${Versions.timber}"
 
     /* Android */
     object Android {
-        val androidx_core =                     "androidx.core:core:${Versions.androidx_core}"
+        val appcompat =                         "androidx.appcompat:appcompat:${Versions.android_support}"
         val espresso =                          "androidx.test.espresso:espresso-core:${Versions.android_espresso}"
         val ktx =                               "androidx.core:core-ktx:${Versions.android_ktx}"
         val robolectric =                       "org.robolectric:robolectric:${Versions.android_robolectric}"

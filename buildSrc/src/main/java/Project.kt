@@ -13,9 +13,9 @@ object Project {
     /* Version */
     private val major:      Int =       0
     private val minor:      Int =       1
-    private val channel:    Channel =   Build
-    private val patch:      Int =       0
-    private val build:      Int =       1
+    private val channel:    Channel =   Alpha
+    private val patch:      Int =       1
+    private val build:      Int =       0
 
     /* Publishing */
     val bintrayGroup =      "studio.forface"
@@ -34,7 +34,7 @@ object Project {
     /** The Android API level as target of the App */
     val targetSdk = 28
     /** The Android API level required for run the App */
-    val minSdk = 14
+    val minSdk = 16
     /** The version of the JDK  */
     val jdkVersion = JavaVersion.VERSION_1_8
 

@@ -5,6 +5,7 @@ package studio.forface.fluentnotifications
 import android.content.Context
 import androidx.annotation.IntegerRes
 import androidx.annotation.StringRes
+import androidx.fragment.app.FragmentActivity
 import studio.forface.fluentnotifications.builder.*
 import studio.forface.fluentnotifications.enum.NotificationImportance
 import studio.forface.fluentnotifications.utils.Android
@@ -72,6 +73,9 @@ fun Context.cancelNotification( id: Int, tag: String? = null ) {
 
 /** API test purpose only. TODO remove */
 private fun Context.test() {
+
+    class EmptyActivity: FragmentActivity()
+
     showNotification( 123, "someTag" ) {
 
         behaviour {
@@ -87,6 +91,7 @@ private fun Context.test() {
             smallIconRes = 0
             title = "Title"
             contentText = "Content"
+            onContentAction { startActivity<EmptyActivity>() }
         }
     }
 }

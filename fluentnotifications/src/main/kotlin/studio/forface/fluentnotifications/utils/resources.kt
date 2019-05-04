@@ -64,20 +64,21 @@ internal operator fun Resources.invoke() = object : ResourcedBuilder {
  * @return a value of type [T] with the given [resourceId] from [Resources]
  * @throws IllegalResourceException if it's impossible to resolve a resource for the given [KClass] type
  */
+@PublishedApi
 internal inline operator fun <reified T : Any> Resources.get( resourceId: Int ) = get( T::class, resourceId )
 
 /** TODO implements other resource's types
  * @return a value of type [T] with the given [resourceId] from [Resources]
  * @throws IllegalResourceException if it's impossible to resolve a resource for the given [KClass] type
  */
+@PublishedApi
 internal operator fun <T : Any> Resources.get( tClass: KClass<T>, resourceId: Int ) : T {
     @Suppress("UNCHECKED_CAST", "IMPLICIT_CAST_TO_ANY") // Cannot have a checked cast since T is Any
     return when ( tClass ) {
 
         /* String and Numbers */
         CharSequence::class -> getText( resourceId )
-        Int::class -> getString( resourceId ).toInt()
-        Long::class -> getString( resourceId ).toLong()
+        Int::class -> getInteger( resourceId )
 
         /* Images */
         Drawable::class ->

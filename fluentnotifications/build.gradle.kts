@@ -10,6 +10,7 @@ dependencies {
     implementation( Libs.kotlin )
     implementation( Libs.reflect )
 
+    implementation( Libs.Android.appcompat )
     implementation( Libs.Android.ktx )
 
     applyTests()

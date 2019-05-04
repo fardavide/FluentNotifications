@@ -4,10 +4,7 @@ import android.content.res.Resources
 import io.mockk.every
 import io.mockk.mockk
 import org.junit.Test
-import studio.forface.fluentnotifications.utils.ResourcedBuilder
-import studio.forface.fluentnotifications.utils.invoke
-import studio.forface.fluentnotifications.utils.optional
-import studio.forface.fluentnotifications.utils.required
+import studio.forface.fluentnotifications.utils.*
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
 
@@ -15,6 +12,8 @@ internal class DelegationTest : ResourcedBuilder by mockk() {
 
     private var optional by optional<Int?>()
     private var required by required<Int>()
+    private var optionalOnce by optionalOnce<Int?>()
+    private var requiredOnce by requiredOnce<Int>()
 
     @Test
     fun `optional notNull setGet right value`() {
@@ -24,7 +23,6 @@ internal class DelegationTest : ResourcedBuilder by mockk() {
 
     @Test
     fun `optional null setGet null`() {
-        optional = null
         assertNull( optional )
     }
 
@@ -37,6 +35,40 @@ internal class DelegationTest : ResourcedBuilder by mockk() {
     @Test( expected = RequiredPropertyNotSetException::class )
     fun `required null get_throwException`() {
         required
+    }
+
+    @Test
+    fun `optionalOnce notNull setGet right value`() {
+        optionalOnce = 6
+        assertEquals( 6, optionalOnce )
+    }
+
+    @Test
+    fun `optionalOnce null setGet null`() {
+        assertNull( optionalOnce )
+    }
+
+    @Test( expected = PropertyAlreadySetException::class )
+    fun `optionalOnce set twice _throwException`() {
+        optionalOnce = 6
+        optionalOnce = 6
+    }
+
+    @Test
+    fun `requiredOnce notNull setGet right value`() {
+        requiredOnce = 7
+        assertEquals( 7, requiredOnce )
+    }
+
+    @Test( expected = RequiredPropertyNotSetException::class )
+    fun `requiredOnce null get_throwException`() {
+        requiredOnce
+    }
+
+    @Test( expected = PropertyAlreadySetException::class )
+    fun `requiredOnce set twice _throwException`() {
+        requiredOnce = 7
+        requiredOnce = 7
     }
 }
 

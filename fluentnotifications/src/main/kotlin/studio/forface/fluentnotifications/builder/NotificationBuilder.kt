@@ -26,7 +26,7 @@ import studio.forface.fluentnotifications.utils.*
  */
 @NotificationDsl
 class NotificationBuilder internal constructor(
-    context: Context,
+    private val context: Context,
     private val getParams: () -> NotificationParams
 ) : ResourcedBuilder by context() {
 
@@ -68,10 +68,22 @@ class NotificationBuilder internal constructor(
      */
     @StringRes var titleRes: Int? = null
 
+    /**
+     * OPTIONAL block [PendingIntentBlock] for add an action on Content
+     * @see NotificationCompat.Builder.setContentIntent
+     */
+    fun onContentAction( block: PendingIntentBlock ) {
+        contentActionBuilder.apply( block )
+    }
+
+
     /** A [NotificationCompat.Builder] for create a [Notification] */
     @Suppress( "DEPRECATION" ) /* NotificationCompat.Builder constructor without a Channel's id is deprecated. But we
     will add the id later */
     private val builder = NotificationCompat.Builder( context )
+
+    /** A [PendingIntentBuilder] for create a `PendingIntent` for Content Action */
+    private val contentActionBuilder = PendingIntentBuilder( context )
 
     /** @return [Notification] with the params previously set */
     internal fun build(): Notification = with( getParams() ) {
@@ -87,6 +99,9 @@ class NotificationBuilder internal constructor(
             setSmallIcon( smallIconRes )
             setContentTitle( title )
             contentText?.let { setContentText( it ) }
+
+            /* Actions */
+            contentActionBuilder.pendingIntent?.let { setContentIntent( it ) }
 
             /* Defaults */
             setDefaults( behaviour.defaults )

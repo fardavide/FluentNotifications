@@ -8,11 +8,27 @@
 <a href="../../index.html">fluentnotifications</a>&nbsp;/&nbsp;<a href="../index.html">studio.forface.fluentnotifications.builder</a>&nbsp;/&nbsp;<a href="index.html">NotificationBuilder</a>&nbsp;/&nbsp;<a href="./on-content-action.html">onContentAction</a><br/>
 <br/>
 <h1>onContentAction</h1>
-<a name="studio.forface.fluentnotifications.builder.NotificationBuilder$onContentAction(kotlin.Function1((studio.forface.fluentnotifications.builder.PendingIntentBuilder, kotlin.Unit)))"></a>
-<code><span class="keyword">fun </span><span class="identifier">onContentAction</span><span class="symbol">(</span><span class="identifier" id="studio.forface.fluentnotifications.builder.NotificationBuilder$onContentAction(kotlin.Function1((studio.forface.fluentnotifications.builder.PendingIntentBuilder, kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<a href="../-pending-intent-block.html"><span class="identifier">PendingIntentBlock</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<a name="studio.forface.fluentnotifications.builder.NotificationBuilder$onContentAction(kotlin.Boolean, kotlin.Function1((studio.forface.fluentnotifications.builder.PendingIntentBuilder, kotlin.Unit)))"></a>
+<code><span class="keyword">fun </span><span class="identifier">onContentAction</span><span class="symbol">(</span><span class="identifier" id="studio.forface.fluentnotifications.builder.NotificationBuilder$onContentAction(kotlin.Boolean, kotlin.Function1((studio.forface.fluentnotifications.builder.PendingIntentBuilder, kotlin.Unit)))/autoCancel">autoCancel</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;true<span class="symbol">, </span><span class="identifier" id="studio.forface.fluentnotifications.builder.NotificationBuilder$onContentAction(kotlin.Boolean, kotlin.Function1((studio.forface.fluentnotifications.builder.PendingIntentBuilder, kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<a href="../-pending-intent-block.html"><span class="identifier">PendingIntentBlock</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
 <p>OPTIONAL block <a href="../-pending-intent-block.html">PendingIntentBlock</a> for add an action on Content</p>
+<h3>Parameters</h3>
+<p><a name="autoCancel"></a>
+<code>autoCancel</code> - <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a> whether the Notification need to be cancel on Content Action
+Default is <code>true</code></p>
 <p><strong>See Also</strong><br/>
 <p><a href="#">NotificationCompat.Builder.setContentIntent</a></p>
+<p><a href="#">NotificationCompat.Builder.setAutoCancel</a></p>
+</p>
+<a name="studio.forface.fluentnotifications.builder.NotificationBuilder$onContentAction(android.app.PendingIntent, kotlin.Boolean)"></a>
+<code><span class="keyword">fun </span><span class="identifier">onContentAction</span><span class="symbol">(</span><span class="identifier" id="studio.forface.fluentnotifications.builder.NotificationBuilder$onContentAction(android.app.PendingIntent, kotlin.Boolean)/pendingIntent">pendingIntent</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/app/PendingIntent.html"><span class="identifier">PendingIntent</span></a><span class="symbol">, </span><span class="identifier" id="studio.forface.fluentnotifications.builder.NotificationBuilder$onContentAction(android.app.PendingIntent, kotlin.Boolean)/autoCancel">autoCancel</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;true<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>OPTIONAL <a href="https://developer.android.com/reference/android/app/PendingIntent.html">PendingIntent</a> or add an action on Content</p>
+<h3>Parameters</h3>
+<p><a name="autoCancel"></a>
+<code>autoCancel</code> - <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a> whether the Notification need to be cancel on Content Action
+Default is <code>true</code></p>
+<p><strong>See Also</strong><br/>
+<p><a href="#">NotificationCompat.Builder.setContentIntent</a></p>
+<p><a href="#">NotificationCompat.Builder.setAutoCancel</a></p>
 </p>
 </BODY>
 </HTML>

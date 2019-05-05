@@ -31,7 +31,7 @@ context.showNotification( 123, "someTag" ) {
         smallIconRes = 0
         title = "Title"
         contentText = "Content"
-        onContentAction { startActivity<EmptyActivity>() }
+        onContentAction { start<EmptyActivity>() }
     }
 }
 ```

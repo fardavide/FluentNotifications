@@ -3,6 +3,7 @@
 package studio.forface.fluentnotifications.builder
 
 import android.app.Notification
+import android.app.PendingIntent
 import android.content.Context
 import android.graphics.Color
 import androidx.annotation.DrawableRes
@@ -71,19 +72,39 @@ class NotificationBuilder internal constructor(
     /**
      * OPTIONAL block [PendingIntentBlock] for add an action on Content
      * @see NotificationCompat.Builder.setContentIntent
+     *
+     * @param autoCancel [Boolean] whether the Notification need to be cancel on Content Action
+     * Default is `true`
+     * @see NotificationCompat.Builder.setAutoCancel
      */
-    fun onContentAction( block: PendingIntentBlock ) {
-        contentActionBuilder.apply( block )
+    fun onContentAction( autoCancel: Boolean = true, block: PendingIntentBlock ) {
+        contentIntent = PendingIntentBuilder( context ).apply( block ).pendingIntent
+        autoCancelOnContentAction = autoCancel
     }
 
+    /**
+     * OPTIONAL [PendingIntent] or add an action on Content
+     * @see NotificationCompat.Builder.setContentIntent
+     *
+     * @param autoCancel [Boolean] whether the Notification need to be cancel on Content Action
+     * Default is `true`
+     * @see NotificationCompat.Builder.setAutoCancel
+     */
+    fun onContentAction( pendingIntent: PendingIntent, autoCancel: Boolean = true ) {
+        contentIntent = pendingIntent
+        autoCancelOnContentAction = autoCancel
+    }
 
     /** A [NotificationCompat.Builder] for create a [Notification] */
     @Suppress( "DEPRECATION" ) /* NotificationCompat.Builder constructor without a Channel's id is deprecated. But we
     will add the id later */
     private val builder = NotificationCompat.Builder( context )
 
-    /** A [PendingIntentBuilder] for create a `PendingIntent` for Content Action */
-    private val contentActionBuilder = PendingIntentBuilder( context )
+    /** An OPTIONAL [PendingIntent] for [NotificationCompat.Builder.setContentIntent] */
+    private var contentIntent by optional<PendingIntent?>()
+
+    /** Whether the Notification need to be cancel on Content Action ( [NotificationCompat.Builder.setAutoCancel] ) */
+    private var autoCancelOnContentAction = false
 
     /** @return [Notification] with the params previously set */
     internal fun build(): Notification = with( getParams() ) {
@@ -101,7 +122,8 @@ class NotificationBuilder internal constructor(
             contentText?.let { setContentText( it ) }
 
             /* Actions */
-            contentActionBuilder.pendingIntent?.let { setContentIntent( it ) }
+            contentIntent?.let { setContentIntent( it ) }
+            setAutoCancel( autoCancelOnContentAction )
 
             /* Defaults */
             setDefaults( behaviour.defaults )

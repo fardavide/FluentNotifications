@@ -52,6 +52,17 @@ internal operator fun Context.invoke() = object : ResourcedBuilder {
 }
 
 /**
+ * If the receiver [Int] is not `null`, try to use it as `IntegerRes` for get an [Int] from [Resources], else return
+ * itself.
+ *
+ * @param resources [Resources] for try to get [Int] from Resources
+ */
+internal fun Int?.resourceOrSelf( resources: Resources ): Int? {
+    return if ( this == null ) null
+    else handle( this ) { resources.getInteger( this ) }
+}
+
+/**
  * @return an anonymous [ResourcedBuilder] overriding [ResourcedBuilder.resources] by a [ResourcesProperty] that takes
  * the receiver [Resources] as constructor parameter.
  * E.g. `class SomeBuilder( resources ): ResourcesBuilder by resource()`

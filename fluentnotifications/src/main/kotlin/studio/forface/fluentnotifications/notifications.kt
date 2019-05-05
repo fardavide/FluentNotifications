@@ -91,7 +91,7 @@ private fun Context.test() {
             smallIconRes = 0
             title = "Title"
             contentText = "Content"
-            onContentAction { startActivity<EmptyActivity>() }
+            onContentAction { start<EmptyActivity>() }
         }
     }
 }

@@ -11,3 +11,7 @@ import studio.forface.fluentnotifications.NotificationManagerNotFoundException
  */
 internal val Context.notificationManager get() =
     getSystemService<NotificationManager>() ?: throw NotificationManagerNotFoundException()
+
+/** @return [Intent] created from [Context] with the given [T] type and the optional [flags] */
+@PublishedApi
+internal inline fun <reified T: Any> Context.createIntent( flags: Int? = null ) = Intent<T>( this, flags )

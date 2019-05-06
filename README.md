@@ -18,20 +18,29 @@ context.showNotification( 123, "someTag" ) {
 
     class EmptyActivity: FragmentActivity()
 
-    behaviour {
-        importance = NotificationImportance.HIGH
-        this + defaultVibration
-    }
+    showNotification( 123, "someTag" ) {
 
-    channel( "channelId", "channelName" ) {
-        description = "No description"
-    }
+        behaviour {
+            importance = NotificationImportance.HIGH
+            lightColor = Color.RED
+            this + defaultVibration + defaultSound
+        }
 
-    notification {
-        smallIconRes = 0
-        title = "Title"
-        contentText = "Content"
-        onContentAction { start<EmptyActivity>() }
+        channel( "channelId", "channelName" ) {
+            description = "No description"
+        }
+
+        notification {
+            smallIconRes = 0
+            title = "Title"
+            contentText = "Content"
+            onContentAction( autoCancel = false ) { start<EmptyActivity>() }
+            addAction {
+                iconRes = 0
+                text = "Action #1"
+                onAction { start<EmptyActivity>() }
+            }
+        }
     }
 }
 ```

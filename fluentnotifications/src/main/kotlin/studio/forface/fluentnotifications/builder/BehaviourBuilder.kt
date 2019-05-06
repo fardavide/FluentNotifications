@@ -71,6 +71,14 @@ class BehaviourBuilder internal constructor(
     @ColorRes var lightColorRes: Int? = null
 
     /**
+     * Whether the Notification / Channel should show a badge
+     * Default is `true`
+     *
+     * @see Behaviour.showBadge
+     */
+    var showBadge = true
+
+    /**
      * OPTIONAL [Uri] for the Sound of the Notification / Channel
      * @see Behaviour.soundUri
      */
@@ -96,6 +104,7 @@ class BehaviourBuilder internal constructor(
         lightColor =        lightColor,
         importance =        importance,
         soundUri =          sound,
+        showBadge =         showBadge,
         soundAttributes =   soundAttributes,
         vibrationPattern =  vibrationPattern
     )
@@ -116,6 +125,10 @@ class BehaviourBuilder internal constructor(
  * @see NotificationCompat.Builder.setPriority
  * @see NotificationChannel.setImportance
  *
+ * @property showBadge whether the Notification / Channel should show a badge
+ * @see NotificationCompat.Builder.setBadgeIconType
+ * @see NotificationChannel.setShowBadge
+ *
  * @property soundUri [Uri] for the sound of the Notification / Channel
  * @see NotificationCompat.Builder.setSound
  * @see NotificationChannel.setSound
@@ -131,6 +144,7 @@ internal class Behaviour(
     val defaults: Set<DefaultBehaviour>,
     @ColorInt val lightColor: Int?,
     val importance: NotificationImportance,
+    val showBadge: Boolean,
     val soundUri: Uri?,
     val soundAttributes: AudioAttributes?,
     val vibrationPattern: LongArray

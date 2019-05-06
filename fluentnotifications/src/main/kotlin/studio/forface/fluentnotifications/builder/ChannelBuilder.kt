@@ -97,6 +97,9 @@ class ChannelBuilder internal constructor(
             enableVibration( behaviour.vibrationPattern.isNotEmpty() )
             vibrationPattern = behaviour.vibrationPattern
 
+            // Badge
+            setShowBadge( behaviour.showBadge )
+
             // Default
             setDefaults( behaviour.defaults )
         }

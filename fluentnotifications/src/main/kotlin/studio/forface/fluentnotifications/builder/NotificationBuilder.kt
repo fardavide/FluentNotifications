@@ -9,8 +9,11 @@ import android.graphics.Color
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationCompat.BADGE_ICON_NONE
+import androidx.core.app.NotificationCompat.BADGE_ICON_SMALL
 import studio.forface.fluentnotifications.NotificationDsl
 import studio.forface.fluentnotifications.utils.*
+import kotlin.reflect.full.primaryConstructor
 
 /**
  * A Builder for create a [Notification]
@@ -27,7 +30,7 @@ import studio.forface.fluentnotifications.utils.*
  */
 @NotificationDsl
 class NotificationBuilder internal constructor(
-    private val context: Context,
+    @PublishedApi internal val context: Context,
     private val getParams: () -> NotificationParams
 ) : ResourcedBuilder by context() {
 
@@ -103,6 +106,17 @@ class NotificationBuilder internal constructor(
         autoCancelOnContentAction = autoCancel
     }
 
+    /**
+     * OPTIONAL block that take a sub-type of [NotificationStyle] [S] for build a [NotificationCompat.Style] for the
+     * Notification
+     *
+     * @param S a sub-type of [NotificationStyle]
+     */
+    inline fun <reified S : NotificationStyle> withStyle( block: S.() -> Unit = {} ) {
+        val builder = S::class.primaryConstructor!!.call( context )
+        styleBuilder = builder.apply( block )
+    }
+
     /** A [NotificationCompat.Builder] for create a [Notification] */
     @Suppress( "DEPRECATION" ) /* NotificationCompat.Builder constructor without a Channel's id is deprecated. But we
     will add the id later */
@@ -116,6 +130,9 @@ class NotificationBuilder internal constructor(
 
     /** Whether the Notification need to be cancel on Content Action ( [NotificationCompat.Builder.setAutoCancel] ) */
     private var autoCancelOnContentAction = false
+
+    /** An OPTIONAL instance of [StyleBuilder] for set the Style of the Notification */
+    @PublishedApi internal var styleBuilder: StyleBuilder? = null
 
     /** @return [Notification] with the params previously set */
     internal fun build(): Notification = with( getParams() ) {
@@ -132,6 +149,8 @@ class NotificationBuilder internal constructor(
             setSmallIcon( smallIconRes )
             setContentTitle( title )
             contentText?.let { setContentText( it ) }
+            setBadgeIconType( if ( behaviour.showBadge ) BADGE_ICON_SMALL else BADGE_ICON_NONE )
+            styleBuilder?.let { setStyle( it.build( title ) ) }
 
             /* Actions */
             contentIntent?.let { setContentIntent( it ) }

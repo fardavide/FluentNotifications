@@ -93,6 +93,11 @@ private fun Context.test() {
             smallIconRes = 0
             title = "Title"
             contentText = "Content"
+
+            withStyle<InboxStyle> {
+                this + "Line #1" + "Line #2" + "Line #3"
+            }
+
             onContentAction( autoCancel = false ) { start<EmptyActivity>() }
             addAction {
                 iconRes = 0

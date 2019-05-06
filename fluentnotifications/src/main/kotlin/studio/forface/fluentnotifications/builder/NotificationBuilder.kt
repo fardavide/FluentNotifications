@@ -17,7 +17,7 @@ import studio.forface.fluentnotifications.utils.*
  * Inherit from [ResourcedBuilder] for provide `Resources`
  *
  * @constructor is internal. Instances will be created from [NotificationCoreBuilder] via `Context.showNotification`
- * @param context [Context] required for [ResourcedBuilder] delegation
+ * @param context [Context] required for [ResourcedBuilder] delegation and for children Builders
  * @param getParams lambda that returns [NotificationParams]
  *
  * @see NotificationDsl as [DslMarker]
@@ -70,6 +70,14 @@ class NotificationBuilder internal constructor(
     @StringRes var titleRes: Int? = null
 
     /**
+     * OPTIONAL block [ActionBlock] for add an Action to the Notification
+     * @see NotificationCompat.Builder.addAction
+     */
+    fun addAction( block: ActionBlock ) {
+        actions += ActionBuilder( context ).apply( block ).build()
+    }
+
+    /**
      * OPTIONAL block [PendingIntentBlock] for add an action on Content
      * @see NotificationCompat.Builder.setContentIntent
      *
@@ -100,8 +108,11 @@ class NotificationBuilder internal constructor(
     will add the id later */
     private val builder = NotificationCompat.Builder( context )
 
+    /** A Mutable List of [NotificationCompat.Action] */
+    private val actions = mutableListOf<NotificationCompat.Action>()
+
     /** An OPTIONAL [PendingIntent] for [NotificationCompat.Builder.setContentIntent] */
-    private var contentIntent by optional<PendingIntent?>()
+    private var contentIntent : PendingIntent? by optional()
 
     /** Whether the Notification need to be cancel on Content Action ( [NotificationCompat.Builder.setAutoCancel] ) */
     private var autoCancelOnContentAction = false
@@ -125,6 +136,7 @@ class NotificationBuilder internal constructor(
             /* Actions */
             contentIntent?.let { setContentIntent( it ) }
             setAutoCancel( autoCancelOnContentAction )
+            actions.forEach { addAction( it ) }
 
             /* Defaults */
             setDefaults( behaviour.defaults )

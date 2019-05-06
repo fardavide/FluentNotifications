@@ -3,6 +3,7 @@
 package studio.forface.fluentnotifications
 
 import android.content.Context
+import android.graphics.Color
 import androidx.annotation.IntegerRes
 import androidx.annotation.StringRes
 import androidx.fragment.app.FragmentActivity
@@ -80,6 +81,7 @@ private fun Context.test() {
 
         behaviour {
             importance = NotificationImportance.HIGH
+            lightColor = Color.RED
             this + defaultVibration + defaultSound
         }
 
@@ -91,7 +93,12 @@ private fun Context.test() {
             smallIconRes = 0
             title = "Title"
             contentText = "Content"
-            onContentAction { start<EmptyActivity>() }
+            onContentAction( autoCancel = false ) { start<EmptyActivity>() }
+            addAction {
+                iconRes = 0
+                text = "Action #1"
+                onAction { start<EmptyActivity>() }
+            }
         }
     }
 }

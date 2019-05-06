@@ -89,6 +89,7 @@ class ChannelBuilder internal constructor(
             // Light
             enableLights( behaviour.lightColor != null )
             behaviour.lightColor?.let { lightColor = behaviour.lightColor }
+            setSound()
 
             // Vibration
             enableVibration( behaviour.vibrationPattern.isNotEmpty() )

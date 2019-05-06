@@ -83,3 +83,6 @@ class NotificationCoreBuilder internal constructor( context: Context ) {
     /** @return [Notification] created with params defined in [NotificationBlock] [notification] */
     internal fun buildNotification() = notificationBuilder.build()
 }
+
+/** Typealias for a lambda that takes [NotificationCoreBuilder] as receiver and returns [Unit] */
+typealias NotificationCoreBlock = NotificationCoreBuilder.() -> Unit

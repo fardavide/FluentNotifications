@@ -4,6 +4,8 @@ import android.annotation.TargetApi
 import android.app.NotificationChannel
 import android.os.Build
 import androidx.core.app.NotificationCompat
+import android.media.AudioAttributes
+import android.media.RingtoneManager
 
 /**
  * A set of default values for `Behaviour` for Notifications / Channels
@@ -11,10 +13,28 @@ import androidx.core.app.NotificationCompat
  * @param notificationPlatform ( Notification pre-Oreo ) [Int] flag to add to the `Notification` via
  * NotificationCompat.Builder.setDefault`
  *
+ * @param channelSetter ( Notification on Android Ore ) lambda [ChannelSetter] that will se the parameters on the
+ * appropriate [NotificationChannel]
+ *
  *
  * @author Davide Giuseppe Farella
  */
 enum class DefaultBehaviour( internal val notificationPlatform: Int, internal val channelSetter: ChannelSetter ) {
+
+    /**
+     * @see NotificationCompat.Builder.setDefaults
+     * @see NotificationChannel.setSound
+     */
+    SOUND(
+        NotificationCompat.DEFAULT_SOUND,
+        @TargetApi(Build.VERSION_CODES.O) {
+            val audioAttributes = AudioAttributes.Builder()
+                .setContentType( AudioAttributes.CONTENT_TYPE_SONIFICATION )
+                .setUsage( AudioAttributes.USAGE_NOTIFICATION_RINGTONE )
+                .build()
+            it.setSound( RingtoneManager.getDefaultUri( RingtoneManager.TYPE_NOTIFICATION ), audioAttributes )
+        }
+    ),
 
     /**
      * @see NotificationCompat.Builder.setDefaults

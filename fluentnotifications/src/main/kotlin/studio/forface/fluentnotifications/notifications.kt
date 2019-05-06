@@ -23,7 +23,7 @@ import studio.forface.fluentnotifications.utils.notificationManager
 fun Context.showNotification(
     @IntegerRes idRes: Int,
     @StringRes tagRes: Int? = null,
-    block: NotificationCoreBuilder.() -> Unit
+    block: NotificationCoreBlock
 ) {
     showNotification( resources.getInteger( idRes ), tagRes?.let( ::getString ), block  )
 }
@@ -40,7 +40,7 @@ fun Context.showNotification(
 fun Context.showNotification(
     id: Int,
     tag: String? = null,
-    block: NotificationCoreBuilder.() -> Unit
+    block: NotificationCoreBlock
 ) {
     val builder = NotificationCoreBuilder( this ).apply( block )
 
@@ -80,7 +80,7 @@ private fun Context.test() {
 
         behaviour {
             importance = NotificationImportance.HIGH
-            this + defaultVibration
+            this + defaultVibration + defaultSound
         }
 
         channel( "channelId", "channelName" ) {

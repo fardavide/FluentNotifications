@@ -114,6 +114,7 @@ class NotificationBuilder internal constructor(
             /* Behaviour */
             priority = behaviour.importance.priorityPlatform
             setLights( behaviour.lightColor ?: Color.BLACK, 300, 1000 )
+            setSoun
             setVibrate( behaviour.vibrationPattern )
 
             /* Style */

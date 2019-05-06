@@ -4,6 +4,8 @@ package studio.forface.fluentnotifications.builder
 
 import android.app.NotificationChannel
 import android.content.res.Resources
+import android.media.AudioAttributes
+import android.net.Uri
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.core.app.NotificationCompat
@@ -99,6 +101,8 @@ class BehaviourBuilder internal constructor(
  * @see NotificationCompat.Builder.setPriority
  * @see NotificationChannel.setImportance
  *
+ * @property soundUri [Uri] TODO
+ *
  * @property vibrationPattern [LongArray] of the pattern for the vibration of the Notification / Channel
  * @see NotificationCompat.Builder.setVibrate
  * @see NotificationChannel.setVibrationPattern
@@ -107,6 +111,8 @@ internal class Behaviour(
     val defaults: Set<DefaultBehaviour>,
     @ColorInt val lightColor: Int?,
     val importance: NotificationImportance,
+    val soundUri: Uri,
+    val soundAttributes: AudioAttributes,
     val vibrationPattern: LongArray
 )
 
@@ -121,4 +127,10 @@ operator fun BehaviourBuilder.plus( default: DefaultBehaviour ) = apply {
     defaults += default
 }
 
+/** A shortcut reference to [DefaultBehaviour.SOUND] available for [BehaviourBuilder] */
+@Suppress("unused")
+val BehaviourBuilder.defaultSound get() = DefaultBehaviour.SOUND
+
+/** A shortcut reference to [DefaultBehaviour.VIBRATION] available for [BehaviourBuilder] */
+@Suppress("unused")
 val BehaviourBuilder.defaultVibration get() = DefaultBehaviour.VIBRATION

@@ -9,6 +9,9 @@ import android.os.Build
  */
 internal object Android {
 
+    /** @return [Boolean] whether the current SDK if equals of greater that Android Lollipop */
+    val LOLLIPOP get() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
+
     /** @return [Boolean] whether the current SDK if equals of greater that Android Marshmallow */
     val MARSHMALLOW get() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
 

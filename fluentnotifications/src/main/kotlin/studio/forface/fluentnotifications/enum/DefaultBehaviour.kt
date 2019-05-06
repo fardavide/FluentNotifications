@@ -6,6 +6,7 @@ import android.os.Build
 import androidx.core.app.NotificationCompat
 import android.media.AudioAttributes
 import android.media.RingtoneManager
+import androidx.annotation.RequiresApi
 
 /**
  * A set of default values for `Behaviour` for Notifications / Channels
@@ -28,10 +29,7 @@ enum class DefaultBehaviour( internal val notificationPlatform: Int, internal va
     SOUND(
         NotificationCompat.DEFAULT_SOUND,
         @TargetApi(Build.VERSION_CODES.O) {
-            val audioAttributes = AudioAttributes.Builder()
-                .setContentType( AudioAttributes.CONTENT_TYPE_SONIFICATION )
-                .setUsage( AudioAttributes.USAGE_NOTIFICATION_RINGTONE )
-                .build()
+            val audioAttributes = DEFAULT_SOUND_ATTRIBUTES
             it.setSound( RingtoneManager.getDefaultUri( RingtoneManager.TYPE_NOTIFICATION ), audioAttributes )
         }
     ),
@@ -48,6 +46,11 @@ enum class DefaultBehaviour( internal val notificationPlatform: Int, internal va
 
 /** Typealias for a lambda that takes [NotificationChannel] as argument ang returns [Unit] */
 private typealias ChannelSetter = (NotificationChannel) -> Unit
+
+internal val DEFAULT_SOUND_ATTRIBUTES @RequiresApi(Build.VERSION_CODES.LOLLIPOP) get() = AudioAttributes.Builder()
+    .setContentType( AudioAttributes.CONTENT_TYPE_SONIFICATION )
+    .setUsage( AudioAttributes.USAGE_NOTIFICATION_RINGTONE )
+    .build()
 
 /** [LongArray] of the default pattern for vibration */
 private val DEFAULT_VIBRATION_PATTERN = longArrayOf( 100, 200, 300, 400, 500, 400, 300, 200, 400 )

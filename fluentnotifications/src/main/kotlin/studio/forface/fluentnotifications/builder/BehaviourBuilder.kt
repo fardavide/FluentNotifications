@@ -10,6 +10,7 @@ import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.core.app.NotificationCompat
 import studio.forface.fluentnotifications.NotificationDsl
+import studio.forface.fluentnotifications.enum.DEFAULT_SOUND_ATTRIBUTES
 import studio.forface.fluentnotifications.enum.DefaultBehaviour
 import studio.forface.fluentnotifications.enum.NotificationImportance
 import studio.forface.fluentnotifications.utils.Android
@@ -70,6 +71,18 @@ class BehaviourBuilder internal constructor(
     @ColorRes var lightColorRes: Int? = null
 
     /**
+     * OPTIONAL [Uri] for the Sound of the Notification / Channel
+     * @see Behaviour.soundUri
+     */
+    var sound: Uri? by optional()
+
+    /**
+     * [AudioAttributes] for the Sound of the Notification / Channel
+     * @see Behaviour.soundAttributes
+     */
+    var soundAttributes = if ( Android.OREO ) DEFAULT_SOUND_ATTRIBUTES else null
+
+    /**
      * OPTIONAL [LongArray] for the pattern of the vibration of the Notification / Channel
      * Vibration will be automatically enabled / disable whether this [LongArray] is empty or not
      *
@@ -82,6 +95,8 @@ class BehaviourBuilder internal constructor(
         defaults =          defaults,
         lightColor =        lightColor,
         importance =        importance,
+        soundUri =          sound,
+        soundAttributes =   soundAttributes,
         vibrationPattern =  vibrationPattern
     )
 }
@@ -97,11 +112,16 @@ class BehaviourBuilder internal constructor(
  * @see NotificationCompat.Builder.setLights
  * @see NotificationChannel.setLightColor
  *
- * @property importance [NotificationBuilder] that contains priority for the Notification / Channel
+ * @property importance [NotificationImportance] that contains priority for the Notification / Channel
  * @see NotificationCompat.Builder.setPriority
  * @see NotificationChannel.setImportance
  *
- * @property soundUri [Uri] TODO
+ * @property soundUri [Uri] for the sound of the Notification / Channel
+ * @see NotificationCompat.Builder.setSound
+ * @see NotificationChannel.setSound
+ *
+ * @property soundAttributes [AudioAttributes] for the sound of the Channel
+ * @see NotificationChannel.setSound
  *
  * @property vibrationPattern [LongArray] of the pattern for the vibration of the Notification / Channel
  * @see NotificationCompat.Builder.setVibrate
@@ -111,8 +131,8 @@ internal class Behaviour(
     val defaults: Set<DefaultBehaviour>,
     @ColorInt val lightColor: Int?,
     val importance: NotificationImportance,
-    val soundUri: Uri,
-    val soundAttributes: AudioAttributes,
+    val soundUri: Uri?,
+    val soundAttributes: AudioAttributes?,
     val vibrationPattern: LongArray
 )
 

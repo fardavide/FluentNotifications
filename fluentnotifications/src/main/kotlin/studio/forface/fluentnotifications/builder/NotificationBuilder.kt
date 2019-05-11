@@ -132,7 +132,8 @@ class NotificationBuilder internal constructor(
     private var autoCancelOnContentAction = false
 
     /** An OPTIONAL instance of [StyleBuilder] for set the Style of the Notification */
-    @PublishedApi internal var styleBuilder: StyleBuilder? = null
+    @PublishedApi // Needed for inline
+    internal var styleBuilder: StyleBuilder? = null
 
     /** @return [Notification] with the params previously set */
     internal fun build(): Notification = with( getParams() ) {

@@ -2,8 +2,12 @@ package studio.forface.fluentnotifications.utils
 
 import android.content.Context
 import android.content.res.Resources
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.drawable.Drawable
+import androidx.core.graphics.drawable.IconCompat
 import studio.forface.fluentnotifications.IllegalResourceException
+import studio.forface.fluentnotifications.appPackageName
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KClass
 import kotlin.reflect.KProperty
@@ -92,9 +96,9 @@ internal operator fun <T : Any> Resources.get( tClass: KClass<T>, resourceId: In
         Int::class -> getInteger( resourceId )
 
         /* Images */
-        Drawable::class ->
-            @Suppress("DEPRECATION") // Theme actually not supported
-            getDrawable( resourceId )
+        Bitmap::class -> BitmapFactory.decodeResource( this, resourceId ) // This will create a low-res Bitmap
+        Drawable::class -> @Suppress("DEPRECATION") /* Theme actually not supported */ getDrawable( resourceId )
+        IconCompat::class -> IconCompat.createWithResource( this, appPackageName, resourceId )
 
         else -> throw IllegalResourceException( tClass )
     } as T

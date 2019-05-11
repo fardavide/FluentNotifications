@@ -13,6 +13,12 @@ import studio.forface.fluentnotifications.utils.Android
 import studio.forface.fluentnotifications.utils.notificationManager
 
 /**
+ * A reference to the [Context.getPackageName] of the calling app.
+ * This will be needed for create resolve some element from resource.
+ */
+internal var appPackageName = String()
+
+/**
  * Show a Notification created with Dsl from a [Context]
  * @param idRes a REQUIRED [IntegerRes] id for create the Notification
  * @param tagRes an OPTIONAL [StringRes] tag for create the Notification. If `null` if will be ignored
@@ -43,6 +49,7 @@ fun Context.showNotification(
     tag: String? = null,
     block: NotificationCoreBlock
 ) {
+    appPackageName = packageName
     val builder = NotificationCoreBuilder( this ).apply( block )
 
     with( notificationManager ) {

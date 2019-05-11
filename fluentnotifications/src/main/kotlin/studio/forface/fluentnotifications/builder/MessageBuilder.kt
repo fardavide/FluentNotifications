@@ -1,2 +1,3 @@
 package studio.forface.fluentnotifications.builder
 
+class MessageBuilder

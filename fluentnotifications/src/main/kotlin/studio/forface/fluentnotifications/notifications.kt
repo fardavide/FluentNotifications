@@ -105,6 +105,16 @@ private fun Context.test() {
                 this + "Line #1" + "Line #2" + "Line #3"
             }
 
+            withStyle<MessagingStyle> {
+                title = "Title"
+                person {
+                    name = "Bot"
+                    bot = true
+                }
+                this +  { text = "Hello user" } +
+                        { text = "I am a bot!" }
+            }
+
             onContentAction( autoCancel = false ) { start<EmptyActivity>() }
             addAction {
                 iconRes = 0

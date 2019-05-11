@@ -70,6 +70,15 @@ Backing value of <a href="title.html">title</a></p>
 <tbody>
 <tr>
 <td>
+<p><a href="add-action.html">addAction</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">addAction</span><span class="symbol">(</span><span class="identifier" id="studio.forface.fluentnotifications.builder.NotificationBuilder$addAction(kotlin.Function1((studio.forface.fluentnotifications.builder.ActionBuilder, kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<a href="../-action-block.html"><span class="identifier">ActionBlock</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>OPTIONAL block <a href="../-action-block.html">ActionBlock</a> for add an Action to the Notification</p>
+</td>
+</tr>
+<tr>
+<td>
 <p><a href="on-content-action.html">onContentAction</a></p>
 </td>
 <td>
@@ -77,6 +86,16 @@ Backing value of <a href="title.html">title</a></p>
 <p>OPTIONAL block <a href="../-pending-intent-block.html">PendingIntentBlock</a> for add an action on Content</p>
 <code><span class="keyword">fun </span><span class="identifier">onContentAction</span><span class="symbol">(</span><span class="identifier" id="studio.forface.fluentnotifications.builder.NotificationBuilder$onContentAction(android.app.PendingIntent, kotlin.Boolean)/pendingIntent">pendingIntent</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/app/PendingIntent.html"><span class="identifier">PendingIntent</span></a><span class="symbol">, </span><span class="identifier" id="studio.forface.fluentnotifications.builder.NotificationBuilder$onContentAction(android.app.PendingIntent, kotlin.Boolean)/autoCancel">autoCancel</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;true<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
 <p>OPTIONAL <a href="https://developer.android.com/reference/android/app/PendingIntent.html">PendingIntent</a> or add an action on Content</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="with-style.html">withStyle</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">S</span><span class="symbol">&gt;</span> <span class="identifier">withStyle</span><span class="symbol">(</span><span class="identifier" id="studio.forface.fluentnotifications.builder.NotificationBuilder$withStyle(kotlin.Function1((studio.forface.fluentnotifications.builder.NotificationBuilder.withStyle.S, kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<a href="with-style.html#S"><span class="identifier">S</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a>&nbsp;<span class="symbol">=</span>&nbsp;{}<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>OPTIONAL block that take a sub-type of <a href="with-style.html#S">NotificationStyle</a> for build a <a href="#">NotificationCompat.Style</a> for the
+Notification</p>
 </td>
 </tr>
 </tbody>

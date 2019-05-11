@@ -47,6 +47,34 @@ Light will be automatically enabled / disabled whether this value is <code>null<
 </tr>
 <tr>
 <td>
+<p><a href="show-badge.html">showBadge</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">showBadge</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Whether the Notification / Channel should show a badge
+Default is <code>true</code></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="sound.html">sound</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">sound</span><span class="symbol">: </span><a href="https://developer.android.com/reference/android/net/Uri.html"><span class="identifier">Uri</span></a><span class="symbol">?</span></code>
+<p>OPTIONAL <a href="https://developer.android.com/reference/android/net/Uri.html">Uri</a> for the Sound of the Notification / Channel</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="sound-attributes.html">soundAttributes</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">soundAttributes</span><span class="symbol">: </span><a href="https://developer.android.com/reference/android/media/AudioAttributes.html"><span class="identifier">AudioAttributes</span></a><span class="symbol">?</span></code>
+<p><a href="https://developer.android.com/reference/android/media/AudioAttributes.html">AudioAttributes</a> for the Sound of the Notification / Channel</p>
+</td>
+</tr>
+<tr>
+<td>
 <p><a href="vibration-pattern.html">vibrationPattern</a></p>
 </td>
 <td>
@@ -62,10 +90,21 @@ Vibration will be automatically enabled / disable whether this <a href="https://
 <tbody>
 <tr>
 <td>
+<p><a href="../default-sound.html">defaultSound</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><a href="./index.html"><span class="identifier">BehaviourBuilder</span></a><span class="symbol">.</span><span class="identifier">defaultSound</span><span class="symbol">: </span><a href="../../studio.forface.fluentnotifications.enum/-default-behaviour/index.html"><span class="identifier">DefaultBehaviour</span></a></code>
+<p>A shortcut reference to <a href="../../studio.forface.fluentnotifications.enum/-default-behaviour/-s-o-u-n-d.html">DefaultBehaviour.SOUND</a> available for <a href="./index.html">BehaviourBuilder</a></p>
+</td>
+</tr>
+<tr>
+<td>
 <p><a href="../default-vibration.html">defaultVibration</a></p>
 </td>
 <td>
-<code><span class="keyword">val </span><a href="./index.html"><span class="identifier">BehaviourBuilder</span></a><span class="symbol">.</span><span class="identifier">defaultVibration</span><span class="symbol">: </span><a href="../../studio.forface.fluentnotifications.enum/-default-behaviour/index.html"><span class="identifier">DefaultBehaviour</span></a></code></td>
+<code><span class="keyword">val </span><a href="./index.html"><span class="identifier">BehaviourBuilder</span></a><span class="symbol">.</span><span class="identifier">defaultVibration</span><span class="symbol">: </span><a href="../../studio.forface.fluentnotifications.enum/-default-behaviour/index.html"><span class="identifier">DefaultBehaviour</span></a></code>
+<p>A shortcut reference to <a href="../../studio.forface.fluentnotifications.enum/-default-behaviour/-v-i-b-r-a-t-i-o-n.html">DefaultBehaviour.VIBRATION</a> available for <a href="./index.html">BehaviourBuilder</a></p>
+</td>
 </tr>
 </tbody>
 </table>

@@ -28,7 +28,9 @@ import studio.forface.fluentnotifications.utils.required
  * @author Davide Giuseppe Farella
  */
 @NotificationDsl
-class PersonBuilder internal constructor( resources: Resources ) : ResourcedBuilder by resources() {
+class PersonBuilder @PublishedApi internal constructor( // Constructor needs to be invoked from inline function
+    resources: Resources
+) : ResourcedBuilder by resources() {
 
     /**
      * Defines whether the [Person] is a bot.
@@ -116,6 +118,7 @@ class PersonBuilder internal constructor( resources: Resources ) : ResourcedBuil
     var uriString: String? = null
 
     /** @return [Person] */
+    @PublishedApi  // Needed for inline
     internal fun build() : Person {
         return Person.Builder()
             .setBot( bot )

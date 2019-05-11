@@ -4,20 +4,28 @@ package studio.forface.fluentnotifications.builder
 
 import android.content.Context
 import android.graphics.Bitmap
+import android.os.Bundle
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationCompat.MessagingStyle.Message
 import androidx.core.app.Person
 import studio.forface.fluentnotifications.NotificationDsl
 import studio.forface.fluentnotifications.utils.ResourcedBuilder
 import studio.forface.fluentnotifications.utils.invoke
 import studio.forface.fluentnotifications.utils.optional
 import studio.forface.fluentnotifications.utils.required
+import kotlin.Boolean
 import kotlin.CharSequence
 import kotlin.DslMarker
 import kotlin.Int
 import kotlin.PublishedApi
 import kotlin.Suppress
+import kotlin.TODO
+import kotlin.collections.forEach
+import kotlin.collections.mutableListOf
+import kotlin.collections.plus
+import kotlin.collections.plusAssign
 import kotlin.let
 import kotlin.plus
 import kotlin.apply as kotlinApply
@@ -46,6 +54,8 @@ abstract class StyleBuilder internal constructor(
      * @see build
      *
      * Backed by [titleRes]
+     *
+     * This will be ignored for [DecoratedCustomViewStyleBuilder]
      */
     var title: CharSequence? by optional { titleRes }
 
@@ -56,6 +66,8 @@ abstract class StyleBuilder internal constructor(
      * @see build
      *
      * Backing value of [title]
+     *
+     * This will be ignored for [DecoratedCustomViewStyleBuilder]
      */
     @StringRes
     var titleRes: Int? = null
@@ -198,6 +210,31 @@ class BigTextStyleBuilder internal constructor( context: Context ) : StyleBuilde
 typealias BigTextStyle = BigTextStyleBuilder
 
 /**
+ * A Builder for create [NotificationCompat.DecoratedCustomViewStyle]
+ * Inherit from [StyleBuilder]
+ *
+ * @constructor in internal. Instances will be created from [NotificationBuilder.withStyle]
+ *
+ * @see NotificationDsl as [DslMarker]
+ */
+@NotificationDsl
+class DecoratedCustomViewStyleBuilder internal constructor( context: Context ) : StyleBuilder( context ) {
+
+    /**
+     * @return a subtype of [NotificationCompat.BigTextStyle]
+     * @param notificationTitle [CharSequence] Title of the Notification that owns the created style.
+     */
+    override fun build( notificationTitle: CharSequence ): NotificationCompat.Style {
+        return NotificationCompat.DecoratedCustomViewStyle().kotlinApply {
+            TODO("Not implemented")
+        }
+    }
+}
+
+/** Typealias for [DecoratedCustomViewStyleBuilder] */
+typealias DecoratedCustomViewStyle = DecoratedCustomViewStyleBuilder
+
+/**
  * A Builder for create [NotificationCompat.InboxStyle]
  * Inherit from [StyleBuilder]
  *
@@ -283,12 +320,64 @@ typealias InboxStyle = InboxStyleBuilder
 @NotificationDsl
 class MessagingStyleBuilder internal constructor( context: Context ) : StyleBuilder( context ) {
 
+    /**
+     * OPTIONAL [Bundle] extras for the [NotificationCompat.MessagingStyle]
+     * @see NotificationCompat.MessagingStyle.addCompatExtras
+     */
+    var extras: Bundle? by optional()
+
+    /**
+     * Whether the Message is a group conversation
+     * Default is `false`
+     *
+     * @see NotificationCompat.MessagingStyle.setGroupConversation
+     */
+    var groupConversation: Boolean = false
+
     /** REQUIRED [PersonBlock] for create [Person] for [NotificationCompat.MessagingStyle] */
     inline fun person( block: PersonBlock ) {
         personBuilder.kotlinApply( block )
     }
 
-    /** An instance of [PersonBuilder] for generate a [Person] */
+    /**
+     * @return [Person] created by given [PersonBlock]
+     * It would be useful for create a [Person] to assign to multiple [Message] s
+     */
+    inline fun createPerson( block: PersonBlock ) : Person =
+        PersonBuilder( resources ).kotlinApply( block ).build()
+
+    /**
+     * Add a [Message] to [NotificationCompat.MessagingStyle]
+     * @param block [MessageBlock] for create a [Message]
+     *
+     * @see NotificationCompat.MessagingStyle.addMessage
+     *
+     * @return [MessageConcatenation]
+     */
+    operator fun plus( block: MessageBlock ) : MessageConcatenation {
+        messageBuilders += MessageBuilder( resources ) { personBuilder }.kotlinApply( block )
+        return MessageConcatenation
+    }
+
+    /**
+     * Add a [Message] to [NotificationCompat.MessagingStyle] from another [Message]
+     * E.g. `this + { ... <build message> ... } + { ... <build message> ... }`
+     *
+     * @param block [MessageBlock] for create a [Message]
+     *
+     * @see NotificationCompat.MessagingStyle.addMessage
+     *
+     * @return [MessageConcatenation]
+     */
+    operator fun MessageConcatenation.plus( block: MessageBlock ) : MessageConcatenation {
+        messageBuilders += MessageBuilder( resources ) { personBuilder }.kotlinApply( block )
+        return MessageConcatenation
+    }
+
+    /** A Mutable List of [MessageBuilder] for [NotificationCompat.MessagingStyle] */
+    private val messageBuilders = mutableListOf<MessageBuilder>()
+
+    /** An instance of [PersonBuilder] for generate a [Person] for [NotificationCompat.MessagingStyle] */
     @PublishedApi // Needed for inline
     internal val personBuilder = PersonBuilder( resources )
 
@@ -299,8 +388,17 @@ class MessagingStyleBuilder internal constructor( context: Context ) : StyleBuil
     override fun build( notificationTitle: CharSequence ): NotificationCompat.Style {
         return NotificationCompat.MessagingStyle( personBuilder.build() ).kotlinApply {
             conversationTitle = title ?: notificationTitle
+            isGroupConversation = groupConversation
+            messageBuilders.forEach { addMessage( it.build() ) }
+            extras?.let { addCompatExtras( it ) }
         }
     }
+
+    /**
+     * An object for concatenate [plus] operator for [messageBuilders]
+     * @see MessageConcatenation.plus
+     */
+    object MessageConcatenation
 }
 
 /** Typealias for [MessagingStyleBuilder] */

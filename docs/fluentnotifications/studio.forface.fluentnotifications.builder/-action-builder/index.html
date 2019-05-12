@@ -1,0 +1,63 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>ActionBuilder - fluentnotifications</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">fluentnotifications</a>&nbsp;/&nbsp;<a href="../index.html">studio.forface.fluentnotifications.builder</a>&nbsp;/&nbsp;<a href="./index.html">ActionBuilder</a><br/>
+<br/>
+<h1>ActionBuilder</h1>
+<code><span class="keyword">class </span><span class="identifier">ActionBuilder</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">ResourcedBuilder</span></code>
+<p>A Builder for create a <a href="#">NotificationCompat.Action</a>
+Inherit from <a href="#">ResourcedBuilder</a> for provide <code>Resources</code></p>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="icon-res.html">iconRes</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">iconRes</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
+<p>REQUIRED <a href="#">DrawableRes</a> Icon for <a href="#">NotificationCompat.Action</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="text.html">text</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">text</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-char-sequence/index.html"><span class="identifier">CharSequence</span></a></code>
+<p>REQUIRED <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-char-sequence/index.html">CharSequence</a> Text for <a href="#">NotificationCompat.Action</a>
+Backed by <a href="text-res.html">textRes</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="text-res.html">textRes</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">textRes</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">?</span></code>
+<p>REQUIRED <a href="#">StringRes</a> Text for <a href="#">NotificationCompat.Action</a>
+Backing value of <a href="text.html">text</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="on-action.html">onAction</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">onAction</span><span class="symbol">(</span><span class="identifier" id="studio.forface.fluentnotifications.builder.ActionBuilder$onAction(kotlin.Function1((studio.forface.fluentnotifications.builder.PendingIntentBuilder, kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<a href="../-pending-intent-block.html"><span class="identifier">PendingIntentBlock</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>REQUIRED block <a href="../-pending-intent-block.html">PendingIntentBlock</a> for <a href="#">NotificationCompat.Action</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

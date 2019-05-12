@@ -21,9 +21,6 @@ import kotlin.DslMarker
 import kotlin.Int
 import kotlin.PublishedApi
 import kotlin.Suppress
-import kotlin.TODO
-import kotlin.collections.forEach
-import kotlin.collections.mutableListOf
 import kotlin.collections.plus
 import kotlin.collections.plusAssign
 import kotlin.let
@@ -221,13 +218,11 @@ typealias BigTextStyle = BigTextStyleBuilder
 class DecoratedCustomViewStyleBuilder internal constructor( context: Context ) : StyleBuilder( context ) {
 
     /**
-     * @return a subtype of [NotificationCompat.BigTextStyle]
-     * @param notificationTitle [CharSequence] Title of the Notification that owns the created style.
+     * @return a subtype of [NotificationCompat.DecoratedCustomViewStyle]
+     * @param notificationTitle [CharSequence] ignored here.
      */
     override fun build( notificationTitle: CharSequence ): NotificationCompat.Style {
-        return NotificationCompat.DecoratedCustomViewStyle().kotlinApply {
-            TODO("Not implemented")
-        }
+        return NotificationCompat.DecoratedCustomViewStyle()
     }
 }
 
@@ -341,7 +336,9 @@ class MessagingStyleBuilder internal constructor( context: Context ) : StyleBuil
 
     /**
      * @return [Person] created by given [PersonBlock]
-     * It would be useful for create a [Person] to assign to multiple [Message] s
+     * It would be useful for create a [Person] to assign to multiple [Message]s
+     *
+     * NOTE: This won't set a [Person] for the current block!
      */
     inline fun createPerson( block: PersonBlock ) : Person =
         PersonBuilder( resources ).kotlinApply( block ).build()

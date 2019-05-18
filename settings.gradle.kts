@@ -1,3 +1,3 @@
-include(":buildSrc" )
-include(":fluentnotifications" )
-include(":demo" )
+include( ":buildSrc" )
+include( ":fluentnotifications" )
+include( ":demo" )

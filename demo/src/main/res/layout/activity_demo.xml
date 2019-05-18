@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
     tools:context=".DemoActivity"
     tools:theme="@style/AppTheme">
 
@@ -13,11 +14,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+        <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:title="@string/fluent_notifications_name"/>
+            app:titleEnabled="false"
+            app:layout_scrollFlags="scroll|enterAlways">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:title="@string/fluent_notifications_name" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
     <!-- endregion -->
@@ -25,26 +34,94 @@
     <!-- region NestedScrollView -->
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-        android:paddingStart="@dimen/windowHorizontalMargin"
-        android:paddingTop="@dimen/windowVerticalMargin"
-        android:paddingEnd="@dimen/windowHorizontalMargin"
-        android:paddingBottom="@dimen/windowHorizontalMargin">
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-        <!-- Title -->
-        <com.google.android.material.textfield.TextInputLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:helperText="@string/helper_text_required">
+            android:orientation="vertical"
+            android:paddingStart="@dimen/windowHorizontalMargin"
+            android:paddingTop="@dimen/windowVerticalMargin"
+            android:paddingEnd="@dimen/windowHorizontalMargin"
+            android:paddingBottom="@dimen/windowHorizontalMargin">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/notificationTitleInput"
+            <!-- region Common -->
+            <!-- Id -->
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textCapSentences"
-                android:hint="@string/hint_notification_title" />
-        </com.google.android.material.textfield.TextInputLayout>
+                app:helperText="@string/helper_text_required">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/notificationIdInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:hint="@string/hint_notification_id" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Tag -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:helperText=" ">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/notificationTagInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapSentences"
+                    android:hint="@string/hint_notification_tag" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <!-- endregion -->
+
+            <!-- region Notification -->
+            <studio.forface.fluentnotifications.demo.ExpandableLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Header -->
+                <studio.forface.fluentnotifications.demo.ExpandableLinearLayoutHeader
+                    android:theme="@style/App.ExpandableLinearLayoutHeader"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/group_notification" />
+
+                <!-- Title -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:helperText="@string/helper_text_required">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/notificationTitleInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapSentences"
+                        android:hint="@string/hint_notification_title" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Content -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:helperText=" ">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/notificationContentInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapSentences"
+                        android:hint="@string/hint_notification_content" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </studio.forface.fluentnotifications.demo.ExpandableLinearLayout>
+            <!-- endregion -->
+
+        </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
     <!-- endregion -->
@@ -52,7 +129,9 @@
     <!-- region ConstraintLayout -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorSurface"
+        android:layout_gravity="bottom"
         app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior">
 
         <!-- Guideline start -->
@@ -107,6 +186,7 @@
             android:text="@string/action_show_notification"
             app:icon="@drawable/ic_bell"
             app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
+            app:layout_constraintTop_toBottomOf="@id/guidelineTop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/delayCheckBox" />

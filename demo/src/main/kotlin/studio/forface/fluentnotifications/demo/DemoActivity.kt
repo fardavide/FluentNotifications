@@ -3,6 +3,7 @@
 package studio.forface.fluentnotifications.demo
 
 import android.os.Bundle
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_demo.*
 import kotlinx.coroutines.*
@@ -10,11 +11,17 @@ import kotlinx.coroutines.Dispatchers.Default
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.channels.consumeEach
 import kotlinx.coroutines.channels.ticker
+import studio.forface.fluentnotifications.showNotification
 
 class DemoActivity : AppCompatActivity(), CoroutineScope {
 
     private val job = Job()
     override val coroutineContext = job + Main
+
+    private val requiredFields get() = listOf(
+        notificationIdInput,
+        notificationTitleInput
+    )
 
     override fun onCreate( savedInstanceState: Bundle? ) {
         super.onCreate( savedInstanceState )
@@ -25,11 +32,14 @@ class DemoActivity : AppCompatActivity(), CoroutineScope {
         launch {
             validationTicker.consumeEach {
                 showNotificationButton.isEnabled = validateForm()
+                //showNotificationButton.isClickable = true
             }
         }
 
         showNotificationButton.setOnClickListener {
-            onShowNotification( withDelay = delayCheckBox.isChecked )
+            if ( validateFormOrFocus() ) {
+                onShowNotification( withDelay = delayCheckBox.isChecked )
+            }
         }
     }
 
@@ -37,21 +47,45 @@ class DemoActivity : AppCompatActivity(), CoroutineScope {
         launch {
             if ( withDelay ) delay( NOTIFICATION_DELAY_MS )
 
-            //showNotification()
+            showNotification( notificationId, notificationTag ) {
+
+                notification {
+                    title = notificationTitle
+                    contentText = notificationContent
+                }
+            }
         }
     }
 
-    private val notificationTitle get() = notificationTitleInput.text as CharSequence
+    private val notificationId get() =      notificationIdInput.text.toString().toInt()
+    private val notificationTag get() =     notificationTagInput.text as CharSequence
+    private val notificationTitle get() =   notificationTitleInput.text as CharSequence
+    private val notificationContent get() = notificationContentInput.text as CharSequence
 
+    /** @return `true` if none of [requiredFields] is blank */
     private suspend fun validateForm() = coroutineScope {
         withContext( Default ) {
-            notificationTitle.isNotBlank()
+            requiredFields.find { it.isBlank() } == null
         }
     }
+
+    /** @return `true` if none of [requiredFields] is blank, else focus the first blank field */
+    private fun validateFormOrFocus() = requiredFields.find { it.focusIfBlank() } == null
 
     override fun onDestroy() {
         job.cancel()
         super.onDestroy()
+    }
+
+    /** @return `true` if [EditText.getText] is blank */
+    private fun EditText.isBlank() = text.isBlank()
+
+    /** @return `true` if [EditText.getText] is blank. Also [EditText.requestFocus] if blank */
+    private fun EditText.focusIfBlank() : Boolean {
+        return if ( text.isBlank() ) {
+            requestFocus()
+            true
+        } else false
     }
 }
 

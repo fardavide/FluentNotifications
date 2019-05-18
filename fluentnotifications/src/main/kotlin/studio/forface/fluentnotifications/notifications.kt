@@ -46,7 +46,7 @@ fun Context.showNotification(
 @NotificationDsl
 fun Context.showNotification(
     id: Int,
-    tag: String? = null,
+    tag: CharSequence? = null,
     block: NotificationCoreBlock
 ) {
     appPackageName = packageName
@@ -54,7 +54,7 @@ fun Context.showNotification(
 
     with( notificationManager ) {
         if ( Android.OREO ) createNotificationChannel( builder.buildChannel() )
-        notify( tag, id, builder.buildNotification() )
+        notify( tag.toString(), id, builder.buildNotification() )
     }
 }
 

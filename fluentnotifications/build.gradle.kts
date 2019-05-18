@@ -1,20 +1,20 @@
 plugins {
-    id("com.android.library" )
-    id("kotlin-android" )
-    id("kotlin-android-extensions" )
+    id( "com.android.library" )
+    id( "kotlin-android" )
+    id( "kotlin-android-extensions" )
 }
 
 android { applyAndroidConfig() }
 
 dependencies {
-    implementation( Libs.kotlin )
-    implementation( Libs.reflect )
+    implementation( Lib.kotlin )
+    implementation( Lib.reflect )
 
-    implementation( Libs.Android.appcompat )
-    implementation( Libs.Android.ktx )
+    implementation( Lib.Android.appcompat )
+    implementation( Lib.Android.ktx )
 
     applyTests()
 }
 
 applyDokka()
-publish("fluentnotifications" )
+publish( "fluentnotifications" )

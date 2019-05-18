@@ -1,3 +1,8 @@
 <resources>
     <string name="fluent_notifications_name">Fluent Notifications</string>
+
+    <string name="action_show_notification">Show notification</string>
+    <string name="helper_text_required">Required</string>
+    <string name="hint_notification_title">Notification title</string>
+    <string name="toggle_notification_delay">Delay 3s</string>
 </resources>

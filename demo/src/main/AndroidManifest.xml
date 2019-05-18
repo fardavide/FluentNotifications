@@ -7,11 +7,12 @@
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"
 
-        android:theme="@style/Theme.MaterialComponents.DayNight"
+        android:theme="@style/AppTheme"
 
         android:allowBackup="false">
 
-        <activity android:name=".DemoActivity" >
+        <activity android:name=".DemoActivity"
+            android:windowSoftInputMode="adjustResize" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

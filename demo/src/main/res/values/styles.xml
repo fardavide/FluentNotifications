@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Base App theme -->
+    <style name="AppTheme.Base" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    </style>
+
+    <!-- Main App theme -->
+    <style name="AppTheme" parent="AppTheme.Base">
+
+        <!-- System window -->
+        <item name="windowNoTitle">true</item>
+
+        <!-- Colors -->
+        <item name="colorPrimary">#26c6da</item>
+        <item name="colorPrimaryVariant">#607d8b</item>
+        <item name="colorSecondary">#ec407a</item>
+        <item name="colorSecondaryVariant">#ba68c8</item>
+
+        <!-- Appbar -->
+        <item name="appBarLayoutStyle">@style/App.AppBar</item>
+        <item name="toolbarStyle">@style/App.Toolbar</item>
+
+        <!-- Shape Appearances -->
+        <item name="shapeAppearanceSmallComponent">@style/App.ShapeAppearance.Small</item>
+        <item name="shapeAppearanceMediumComponent">@style/App.ShapeAppearance.Medium</item>
+        <item name="shapeAppearanceLargeComponent">@style/App.ShapeAppearance.Large</item>
+
+        <!-- Text Fields -->
+        <item name="textInputStyle">@style/App.TextField</item>
+
+        <!-- Buttons -->
+        <item name="materialButtonStyle">@style/App.Button.Outline</item>
+        
+        <!-- Checkboxes -->
+        <item name="checkboxStyle">@style/App.Checkbox</item>
+        <item name="android:checkboxStyle">@style/App.Checkbox</item>
+    </style>
+
+    <!-- region Appbar -->
+    <style name="App.AppBar" parent="Widget.Design.AppBarLayout">
+        <item name="elevation">0dp</item>
+    </style>
+
+    <style name="App.Toolbar" parent="Widget.MaterialComponents.Toolbar.Surface">
+        <item name="titleTextColor">?attr/colorPrimaryVariant</item>
+    </style>
+    <!-- endregion -->
+
+    <!-- region Shape Appearances -->
+    <style name="App.ShapeAppearance.Small" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerSize">20dp</item>
+    </style>
+
+    <style name="App.ShapeAppearance.Medium" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerSize">20dp</item>
+    </style>
+
+    <style name="App.ShapeAppearance.Large" parent="ShapeAppearance.MaterialComponents.LargeComponent">
+        <item name="cornerSize">20dp</item>
+    </style>
+    <!-- endregion -->
+
+    <!-- region Text Fields -->
+    <style name="App.TextField" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+    </style>
+    <!-- endregion -->
+
+    <!-- region Buttons -->
+    <style name="App.Button.Outline" parent="Widget.MaterialComponents.Button.OutlinedButton" >
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Caption</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="iconPadding">@dimen/buttonIconPadding</item>
+        <item name="iconTint">@color/secondary_color_selector</item>
+        <item name="strokeColor">@color/secondary_color_selector</item>
+        <item name="android:textColor">@color/secondary_color_selector</item>
+        <item name="rippleColor">?attr/colorSecondaryVariant</item>
+    </style>
+    <!-- endregion -->
+
+    <!-- region Checkboxes -->
+    <style name="App.Checkbox" parent="Widget.AppCompat.CompoundButton.CheckBox" >
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Caption</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:button">@drawable/checkbox_selector</item>
+        <item name="buttonTint">@color/secondary_color_selector</item>
+        <item name="android:padding">@dimen/buttonIconPadding</item>
+    </style>
+    <!-- endregion -->
+
+</resources>

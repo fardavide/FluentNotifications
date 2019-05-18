@@ -9,6 +9,7 @@ fun TestedExtension.applyAndroidConfig( appId: String? = null ) {
         versionCode = Project.versionCode
         versionName = Project.versionName
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
     }
     sourceSets {
         getByName( "main" ).java.srcDirs( "src/main/kotlin" )
@@ -18,5 +19,8 @@ fun TestedExtension.applyAndroidConfig( appId: String? = null ) {
     compileOptions {
         sourceCompatibility = Project.jdkVersion
         targetCompatibility = Project.jdkVersion
+    }
+    packagingOptions {
+        exclude( "META-INF/atomicfu.kotlin_module" )
     }
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="bottomBarVerticalMargin">8dp</dimen>
     <dimen name="buttonIconPadding">8dp</dimen>
     <dimen name="expandableLinearLayoutHeaderPadding">12dp</dimen>
     <dimen name="windowHorizontalMargin">32dp</dimen>

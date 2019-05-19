@@ -5,10 +5,7 @@ import android.app.NotificationChannel
 import android.content.Context
 import android.os.Build
 import androidx.annotation.RequiresApi
-import androidx.core.app.NotificationCompat
 import studio.forface.fluentnotifications.NotificationDsl
-import studio.forface.fluentnotifications.enum.NotificationImportance
-import studio.forface.fluentnotifications.utils.Android
 
 /**
  * A Core Builder for create a Notification with its companions ( channel or other optionals )
@@ -69,7 +66,7 @@ class NotificationCoreBuilder internal constructor( context: Context ) {
     @PublishedApi // Needed for inline
     internal val notificationBuilder = NotificationBuilder( context ) {
         notificationParams(
-            channelId = channelBuilder.id,
+            channelId = channelBuilder.id.toString(),
             behaviour = behaviour
         )
     }

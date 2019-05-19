@@ -46,12 +46,12 @@ class ChannelBuilder internal constructor(
     @StringRes var descriptionRes: Int? = null
 
     /**
-     * REQUIRED [String] id for the [NotificationChannel]
+     * REQUIRED [CharSequence] id for the [NotificationChannel]
      * Backed by [idRes]
      *
      * @see NotificationChannel.getId
      */
-    var id: String by required { idRes }
+    var id: CharSequence by required { idRes }
 
     /**
      * REQUIRED [StringRes] id for the [NotificationChannel]
@@ -81,7 +81,7 @@ class ChannelBuilder internal constructor(
     @RequiresApi(Build.VERSION_CODES.O)
     internal fun build() = getParams().behaviour.let { behaviour ->
 
-        NotificationChannel( id, name, behaviour.importance.importancePlatform ).apply {
+        NotificationChannel( id.toString(), name, behaviour.importance.importancePlatform ).apply {
 
             // Description
             description = this@ChannelBuilder.description
@@ -107,7 +107,7 @@ class ChannelBuilder internal constructor(
 }
 
 /** Add a `channel` block to [NotificationCoreBuilder] with the given [String] id and [CharSequence] name */
-fun NotificationCoreBuilder.channel( id: String, name: CharSequence, block: ChannelBlock = {} ) =
+fun NotificationCoreBuilder.channel( id: CharSequence, name: CharSequence, block: ChannelBlock = {} ) =
     channel {
         this.id = id
         this.name = name

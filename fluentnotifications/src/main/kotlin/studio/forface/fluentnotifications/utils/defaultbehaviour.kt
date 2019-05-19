@@ -16,5 +16,6 @@ internal fun NotificationChannel.setDefaults( defaults: Set<DefaultBehaviour> ) 
 
 /** Apply a [Set] of [DefaultBehaviour] to the receiver [NotificationCompat.Builder] */
 internal fun NotificationCompat.Builder.setDefaults( defaults: Set<DefaultBehaviour> ) {
+    if ( defaults.isEmpty() ) return
     setDefaults( defaults.map { it.notificationPlatform }.reduce { acc, i -> acc or i } )
 }

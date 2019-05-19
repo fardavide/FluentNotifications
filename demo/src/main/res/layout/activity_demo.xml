@@ -77,6 +77,50 @@
             </com.google.android.material.textfield.TextInputLayout>
             <!-- endregion -->
 
+            <!-- region Channel -->
+            <studio.forface.fluentnotifications.demo.ExpandableLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Header -->
+                <studio.forface.fluentnotifications.demo.ExpandableLinearLayoutHeader
+                    android:theme="@style/App.ExpandableLinearLayoutHeader"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/group_channel" />
+
+                <!-- Title -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:helperText="@string/helper_text_required">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/channelIdInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textNoSuggestions"
+                        android:hint="@string/hint_channel_id" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Content -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:helperText="@string/helper_text_required">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/channelNameInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapSentences"
+                        android:hint="@string/hint_channel_name" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </studio.forface.fluentnotifications.demo.ExpandableLinearLayout>
+            <!-- endregion -->
+
             <!-- region Notification -->
             <studio.forface.fluentnotifications.demo.ExpandableLinearLayout
                 android:layout_width="match_parent"
@@ -134,29 +178,13 @@
         android:layout_gravity="bottom"
         app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior">
 
-        <!-- Guideline start -->
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidelineStart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="@dimen/windowHorizontalMargin" />
-
         <!-- Guideline top -->
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineTop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="@dimen/windowVerticalMargin" />
-
-        <!-- Guideline end -->
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidelineEnd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_end="@dimen/windowHorizontalMargin" />
+            app:layout_constraintGuide_begin="@dimen/bottomBarVerticalMargin" />
 
         <!-- Guideline bottom -->
         <androidx.constraintlayout.widget.Guideline
@@ -164,7 +192,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_end="@dimen/windowVerticalMargin" />
+            app:layout_constraintGuide_end="@dimen/bottomBarVerticalMargin" />
 
         <!-- Delay -->
         <CheckBox

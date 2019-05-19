@@ -11,7 +11,10 @@ import kotlinx.coroutines.Dispatchers.Default
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.channels.consumeEach
 import kotlinx.coroutines.channels.ticker
+import studio.forface.fluentnotifications.builder.channel
 import studio.forface.fluentnotifications.showNotification
+import kotlin.random.Random
+import kotlin.random.nextUInt
 
 class DemoActivity : AppCompatActivity(), CoroutineScope {
 
@@ -20,6 +23,8 @@ class DemoActivity : AppCompatActivity(), CoroutineScope {
 
     private val requiredFields get() = listOf(
         notificationIdInput,
+        channelIdInput,
+        channelNameInput,
         notificationTitleInput
     )
 
@@ -27,6 +32,9 @@ class DemoActivity : AppCompatActivity(), CoroutineScope {
         super.onCreate( savedInstanceState )
         setContentView( R.layout.activity_demo )
         setSupportActionBar( toolbar )
+
+        // Set a random id for notification
+        notificationIdInput.setText( Random.nextUInt().toString() )
 
         val validationTicker = ticker( VALIDATE_FORM_INTERVAL_MS )
         launch {
@@ -49,7 +57,10 @@ class DemoActivity : AppCompatActivity(), CoroutineScope {
 
             showNotification( notificationId, notificationTag ) {
 
+                channel( channelId, channelName )
+
                 notification {
+                    smallIconRes = R.drawable.ic_notification_chat
                     title = notificationTitle
                     contentText = notificationContent
                 }
@@ -59,6 +70,8 @@ class DemoActivity : AppCompatActivity(), CoroutineScope {
 
     private val notificationId get() =      notificationIdInput.text.toString().toInt()
     private val notificationTag get() =     notificationTagInput.text as CharSequence
+    private val channelId get() =           channelIdInput.text as CharSequence
+    private val channelName get() =         channelNameInput.text as CharSequence
     private val notificationTitle get() =   notificationTitleInput.text as CharSequence
     private val notificationContent get() = notificationContentInput.text as CharSequence
 

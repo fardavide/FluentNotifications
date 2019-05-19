@@ -2,8 +2,8 @@ $dokka.format:html
 $dokka.linkExtension:html
 $dokka.location:studio.forface.fluentnotifications$cancelNotification(android.content.Context, kotlin.Int, kotlin.Int)studio.forface.fluentnotifications/android.content.-context/cancel-notification.html
 $dokka.location:studio.forface.fluentnotifications$cancelNotification(android.content.Context, kotlin.Int, kotlin.String)studio.forface.fluentnotifications/android.content.-context/cancel-notification.html
+$dokka.location:studio.forface.fluentnotifications$showNotification(android.content.Context, kotlin.Int, kotlin.CharSequence, kotlin.Function1((studio.forface.fluentnotifications.builder.NotificationCoreBuilder, kotlin.Unit)))studio.forface.fluentnotifications/android.content.-context/show-notification.html
 $dokka.location:studio.forface.fluentnotifications$showNotification(android.content.Context, kotlin.Int, kotlin.Int, kotlin.Function1((studio.forface.fluentnotifications.builder.NotificationCoreBuilder, kotlin.Unit)))studio.forface.fluentnotifications/android.content.-context/show-notification.html
-$dokka.location:studio.forface.fluentnotifications$showNotification(android.content.Context, kotlin.Int, kotlin.String, kotlin.Function1((studio.forface.fluentnotifications.builder.NotificationCoreBuilder, kotlin.Unit)))studio.forface.fluentnotifications/android.content.-context/show-notification.html
 studio.forface.fluentnotifications
 studio.forface.fluentnotifications.builder
 studio.forface.fluentnotifications.enum

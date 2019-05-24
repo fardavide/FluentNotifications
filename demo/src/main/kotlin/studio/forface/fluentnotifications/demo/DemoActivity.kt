@@ -13,8 +13,8 @@ import kotlinx.coroutines.channels.consumeEach
 import kotlinx.coroutines.channels.ticker
 import studio.forface.fluentnotifications.builder.channel
 import studio.forface.fluentnotifications.showNotification
+import kotlin.math.absoluteValue
 import kotlin.random.Random
-import kotlin.random.nextUInt
 
 class DemoActivity : AppCompatActivity(), CoroutineScope {
 
@@ -33,21 +33,18 @@ class DemoActivity : AppCompatActivity(), CoroutineScope {
         setContentView( R.layout.activity_demo )
         setSupportActionBar( toolbar )
 
-        // Set a random id for notification
-        notificationIdInput.setText( Random.nextUInt().toString() )
+        setNewRandomNotificationId()
 
         val validationTicker = ticker( VALIDATE_FORM_INTERVAL_MS )
         launch {
             validationTicker.consumeEach {
                 showNotificationButton.isEnabled = validateForm()
-                //showNotificationButton.isClickable = true
             }
         }
 
         showNotificationButton.setOnClickListener {
-            if ( validateFormOrFocus() ) {
-                onShowNotification( withDelay = delayCheckBox.isChecked )
-            }
+            onShowNotification( withDelay = delayCheckBox.isChecked )
+            setNewRandomNotificationId()
         }
     }
 
@@ -55,6 +52,9 @@ class DemoActivity : AppCompatActivity(), CoroutineScope {
         launch {
             if ( withDelay ) delay( NOTIFICATION_DELAY_MS )
 
+            /*= = = = = = = = = = = = = = = == = = = = = = = = = = = = = = =
+             * = = = = = = = = = = FLUENT NOTIFICATIONS = = = = = = = = = =
+             *= = = = = = = = = = = = = = = == = = = = = = = = = = = = = = =*/
             showNotification( notificationId, notificationTag ) {
 
                 channel( channelId, channelName )
@@ -65,6 +65,9 @@ class DemoActivity : AppCompatActivity(), CoroutineScope {
                     contentText = notificationContent
                 }
             }
+            /*= = = = = = = = = = = = = = = == = = = = = = = = = = = = = = =
+              * = = = = = = = = = = FLUENT NOTIFICATIONS = = = = = = = = = =
+              *= = = = = = = = = = = = = = = == = = = = = = = = = = = = = = =*/
         }
     }
 
@@ -75,15 +78,17 @@ class DemoActivity : AppCompatActivity(), CoroutineScope {
     private val notificationTitle get() =   notificationTitleInput.text as CharSequence
     private val notificationContent get() = notificationContentInput.text as CharSequence
 
+    /** Set a random id for notification */
+    private fun setNewRandomNotificationId() {
+        notificationIdInput.setText( Random.nextInt().absoluteValue.toString() )
+    }
+
     /** @return `true` if none of [requiredFields] is blank */
     private suspend fun validateForm() = coroutineScope {
         withContext( Default ) {
-            requiredFields.find { it.isBlank() } == null
+            requiredFields.none { it.isBlank() }
         }
     }
-
-    /** @return `true` if none of [requiredFields] is blank, else focus the first blank field */
-    private fun validateFormOrFocus() = requiredFields.find { it.focusIfBlank() } == null
 
     override fun onDestroy() {
         job.cancel()
@@ -92,14 +97,6 @@ class DemoActivity : AppCompatActivity(), CoroutineScope {
 
     /** @return `true` if [EditText.getText] is blank */
     private fun EditText.isBlank() = text.isBlank()
-
-    /** @return `true` if [EditText.getText] is blank. Also [EditText.requestFocus] if blank */
-    private fun EditText.focusIfBlank() : Boolean {
-        return if ( text.isBlank() ) {
-            requestFocus()
-            true
-        } else false
-    }
 }
 
 /** Default delay in milliseconds before to show the notification */

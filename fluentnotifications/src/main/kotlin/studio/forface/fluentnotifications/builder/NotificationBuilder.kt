@@ -4,7 +4,6 @@ package studio.forface.fluentnotifications.builder
 
 import android.app.Notification
 import android.app.PendingIntent
-import android.content.Context
 import android.graphics.Color
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
@@ -21,7 +20,7 @@ import kotlin.reflect.full.primaryConstructor
  * Inherit from [ResourcedBuilder] for provide `Resources`
  *
  * @constructor is internal. Instances will be created from [NotificationCoreBuilder] via `Context.showNotification`
- * @param context [Context] required for [ResourcedBuilder] delegation and for children Builders
+ * @param coreParams [CoreParams]
  * @param getParams lambda that returns [NotificationParams]
  *
  * @see NotificationDsl as [DslMarker]
@@ -31,9 +30,12 @@ import kotlin.reflect.full.primaryConstructor
  */
 @NotificationDsl
 open class NotificationBuilder @PublishedApi /* Needed for inline */ internal constructor(
-    @PublishedApi internal val context: Context,
+    private val coreParams: CoreParams,
     private val getParams: () -> NotificationParams
-) : ResourcedBuilder by context() {
+) : ResourcedBuilder by coreParams.context() {
+
+    @PublishedApi // Required for inline
+    internal val context get()= coreParams.context
 
     /**
      * OPTIONAL [CharSequence] content text for the Notification
@@ -96,7 +98,7 @@ open class NotificationBuilder @PublishedApi /* Needed for inline */ internal co
      * @see NotificationCompat.Builder.addAction
      */
     fun addAction( block: ActionBlock ) {
-        actions += ActionBuilder( context ).apply( block ).build()
+        actions += ActionBuilder( coreParams ).apply( block ).build()
     }
 
     /**
@@ -108,7 +110,7 @@ open class NotificationBuilder @PublishedApi /* Needed for inline */ internal co
      * @see NotificationCompat.Builder.setAutoCancel
      */
     fun onContentAction( autoCancel: Boolean = true, block: PendingIntentBlock ) {
-        contentIntent = PendingIntentBuilder( context ).apply( block ).pendingIntent
+        contentIntent = PendingIntentBuilder( coreParams ).apply( block ).pendingIntent
         autoCancelOnContentAction = autoCancel
     }
 
@@ -225,10 +227,10 @@ typealias NotificationBlock = NotificationBuilder.() -> Unit
  * @author Davide Giuseppe Farella
  */
 class NotificationGroupBuilder @PublishedApi /* Needed for inline */ internal constructor(
-    context: Context,
+    coreParams: CoreParams,
     getParams: () -> NotificationParams,
     private val getChildNotificationBuilder: () -> NotificationBuilder
-) : NotificationBuilder( context, getParams ) {
+) : NotificationBuilder( coreParams, getParams ) {
 
     /**
      * REQUIRED [DrawableRes] of the small icon for the Notification

@@ -9,10 +9,12 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.annotation.IntegerRes
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
 import studio.forface.fluentnotifications.NotificationDsl
 import studio.forface.fluentnotifications.utils.*
 import kotlin.reflect.full.isSubclassOf
+import studio.forface.fluentnotifications.utils.Intent as newIntent
 
 /**
  * A Builder for create a [PendingIntent]
@@ -21,7 +23,11 @@ import kotlin.reflect.full.isSubclassOf
  * @constructor is internal. Instances will be created from [NotificationBuilder].
  * E.g. [NotificationBuilder.onContentAction]
  *
- * @param context [Context] required for [ResourcedBuilder] delegation and for create the [PendingIntent]
+ * @param coreParams [CoreParams]
+ *
+ * @param autoCancel [Boolean] whether the Notification need to be cancel on Action
+ * Default is `false`
+ *
  *
  * @see NotificationDsl as [DslMarker]
  *
@@ -29,15 +35,18 @@ import kotlin.reflect.full.isSubclassOf
  * @author Davide Giuseppe Farella
  */
 @NotificationDsl
-class PendingIntentBuilder internal constructor(
-    @PublishedApi internal val context: Context,
+class PendingIntentBuilder @PublishedApi /* Required for inline */ internal constructor(
+    private val coreParams: CoreParams, private val autoCancel: Boolean = false,
     private val buildActivityPendingIntent: ActivityPendingIntentCreator = PendingIntent::getActivity,
     private val buildActivitiesPendingIntent: ActivitiesPendingIntentCreator = PendingIntent::getActivities,
     private val buildBroadcastReceiverPendingIntent: BroadcastReceiverPendingIntentCreator = PendingIntent::getBroadcast,
     private val buildServicePendingIntent: ServicePendingIntentCreator = PendingIntent::getService,
     private val buildForegroundServicePendingIntent: ForegroundServicePendingIntentCreator =
             if ( Android.OREO ) PendingIntent::getForegroundService else PendingIntent::getService
-) : ResourcedBuilder by context() {
+) : ResourcedBuilder by coreParams.context() {
+
+    @PublishedApi // Required for inline
+    internal val context get()= coreParams.context
 
     @PublishedApi
     internal companion object {
@@ -46,6 +55,7 @@ class PendingIntentBuilder internal constructor(
     }
 
     /** REQUIRED [PendingIntent] */
+    @PublishedApi // Required for inline
     internal var pendingIntent : PendingIntent by requiredOnce()
 
     /**
@@ -117,7 +127,14 @@ class PendingIntentBuilder internal constructor(
         // If requestCode is not null, try to get the Int from Resource, else use itself. If null use the hashCode of
         // the intent
         val finalRequestCode = requestCode.resourceOrSelf( resources ) ?: intent.hashCode()
-        pendingIntent = buildActivityPendingIntent( context, finalRequestCode, intent, flags, options )
+        val basePendingIntent = buildActivityPendingIntent( context, finalRequestCode, intent, flags, options )
+
+        // If autoCancel is true, wrap the basePendingIntent into another PendingIntent that will cancel the Notification
+        pendingIntent = if ( autoCancel ) {
+            with( coreParams ) {
+                basePendingIntent.wrapInAutoCancel( context, notificationId, notificationTag, finalRequestCode, flags )
+            }
+        } else basePendingIntent
     }
 
     /**
@@ -143,7 +160,14 @@ class PendingIntentBuilder internal constructor(
         // If requestCode is not null, try to get the Int from Resource, else use itself. If null use the hashCode of
         // the intents
         val finalRequestCode = requestCode.resourceOrSelf( resources ) ?: intents.hashCode()
-        pendingIntent = buildActivitiesPendingIntent( context, finalRequestCode, intents, flags, options )
+        val basePendingIntent = buildActivitiesPendingIntent( context, finalRequestCode, intents, flags, options )
+
+        // If autoCancel is true, wrap the basePendingIntent into another PendingIntent that will cancel the Notification
+        pendingIntent = if ( autoCancel ) {
+            with( coreParams ) {
+                basePendingIntent.wrapInAutoCancel( context, notificationId, notificationTag, finalRequestCode, flags )
+            }
+        } else basePendingIntent
     }
 
     /**
@@ -165,7 +189,14 @@ class PendingIntentBuilder internal constructor(
         // If requestCode is not null, try to get the Int from Resource, else use itself. If null use the hashCode of
         // the intent
         val finalRequestCode = requestCode.resourceOrSelf( resources ) ?: intent.hashCode()
-        pendingIntent = buildBroadcastReceiverPendingIntent( context, finalRequestCode, intent, flags )
+        val basePendingIntent = buildBroadcastReceiverPendingIntent( context, finalRequestCode, intent, flags )
+
+        // If autoCancel is true, wrap the basePendingIntent into another PendingIntent that will cancel the Notification
+        pendingIntent = if ( autoCancel ) {
+            with( coreParams ) {
+                basePendingIntent.wrapInAutoCancel( context, notificationId, notificationTag, finalRequestCode, flags )
+            }
+        } else basePendingIntent
     }
 
     /**
@@ -194,15 +225,24 @@ class PendingIntentBuilder internal constructor(
         // the intent
         val finalRequestCode = requestCode.resourceOrSelf( resources ) ?: intent.hashCode()
 
-        pendingIntent = if ( isForeground )
+        val basePendingIntent = if ( isForeground )
             buildForegroundServicePendingIntent( context, finalRequestCode, intent, flags )
         else
             buildServicePendingIntent( context, finalRequestCode, intent, flags )
+
+        // If autoCancel is true, wrap the basePendingIntent into another PendingIntent that will cancel the Notification
+        pendingIntent = if ( autoCancel ) {
+            with( coreParams ) {
+                basePendingIntent.wrapInAutoCancel( context, notificationId, notificationTag, finalRequestCode, flags )
+            }
+        } else basePendingIntent
     }
 }
 
 /** Typealias for a lambda that takes [PendingIntentBuilder] as receiver and returns [Unit] */
 typealias PendingIntentBlock = PendingIntentBuilder.() -> Unit
+
+// region Creators
 
 /** Typealias for a lambda that creates a [PendingIntent] for [FragmentActivity] */
 internal typealias ActivityPendingIntentCreator =
@@ -223,3 +263,62 @@ internal typealias ServicePendingIntentCreator =
 /** Typealias for a lambda that creates a [PendingIntent] for foreground [Service] */
 internal typealias ForegroundServicePendingIntentCreator =
             ( context: Context, requestCode: Int, intent: Intent, flags: Int ) -> PendingIntent
+// endregion
+
+/**
+ * @return [PendingIntent] that will start [AutoCancelActivity] for cancel the notification and launch the receiver
+ * [PendingIntent]
+ *
+ * @see AutoCancelActivity.wrapPendingIntent
+ */
+internal fun PendingIntent.wrapInAutoCancel(
+    context: Context,
+    notificationId: Int,
+    notificationTag: String?,
+    requestCode: Int,
+    flags: Int
+) = AutoCancelActivity
+    .wrapPendingIntent( context, notificationId, notificationTag, this, requestCode, flags )
+
+/** An `Activity` that will cancel the current Notification and then start the original [PendingIntent] */
+internal class AutoCancelActivity : AppCompatActivity() {
+    companion object {
+        private const val EXTRA_PENDING_INTENT = "pending_intent"
+        private const val EXTRA_NOTIFICATION_ID = "notification_id"
+        private const val EXTRA_NOTIFICATION_TAG = "notification_tag"
+
+        /**
+         * @return [PendingIntent] that will start [AutoCancelActivity] for cancel the notification and launch the
+         * [originalPendingIntent]
+         */
+        fun wrapPendingIntent(
+            context: Context,
+            notificationId: Int,
+            notificationTag: String?,
+            originalPendingIntent: PendingIntent,
+            requestCode: Int,
+            flags: Int
+        ) : PendingIntent {
+            val intent = context.createIntent<AutoCancelActivity>( Intent.FLAG_ACTIVITY_NO_HISTORY )
+                .putExtra( EXTRA_NOTIFICATION_ID, notificationId )
+                .putExtra( EXTRA_NOTIFICATION_TAG, notificationTag)
+                .putExtra( EXTRA_PENDING_INTENT, originalPendingIntent )
+            return PendingIntent.getActivity( context, requestCode, intent, flags )
+        }
+    }
+
+    override fun onCreate( savedInstanceState: Bundle? ) {
+        super.onCreate( savedInstanceState )
+        // Re-launch the original PendingIntent
+        intent.getParcelableExtra<PendingIntent>( EXTRA_PENDING_INTENT ).send()
+        // Cancel the notification
+        with( notificationManager ) {
+            cancel(
+                intent.getStringExtra( EXTRA_NOTIFICATION_TAG ),
+                intent.getIntExtra( EXTRA_NOTIFICATION_ID, 0 )
+            )
+        }
+
+        finish()
+    }
+}

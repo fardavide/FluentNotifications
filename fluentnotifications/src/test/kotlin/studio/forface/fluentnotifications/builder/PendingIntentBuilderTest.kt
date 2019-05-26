@@ -4,7 +4,6 @@ import android.app.Service
 import android.content.BroadcastReceiver
 import androidx.fragment.app.FragmentActivity
 import io.mockk.mockk
-import org.junit.Assert.*
 import org.junit.Test
 
 class PendingIntentBuilderTest {

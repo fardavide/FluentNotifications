@@ -13,7 +13,7 @@ import studio.forface.fluentnotifications.enum.GroupBehaviour
 /**
  * A Core Builder for create a Notification with its companions ( channel or other optionals )
  * @constructor is internal. Use `Context.showNotification`
- * @param context [Context] required for create [Notification] and for provide `Resources` for Builders
+ * @param coreParams [CoreParams]
  *
  * @see NotificationDsl as [DslMarker]
  *
@@ -22,9 +22,12 @@ import studio.forface.fluentnotifications.enum.GroupBehaviour
  */
 @NotificationDsl
 class NotificationCoreBuilder internal constructor(
-    @PublishedApi // Needed for inline
-    internal val context: Context
+    @PublishedApi // Required for inline
+    internal val coreParams: CoreParams
 ) {
+
+    @PublishedApi // Required for inline
+    internal val context get()= coreParams.context
 
     /** @return [NotificationParams] for a Builder */
     @PublishedApi // Needed for inline
@@ -114,7 +117,7 @@ class NotificationCoreBuilder internal constructor(
     inline fun groupBy( id: Int, tag: CharSequence? = null, block: NotificationGroupBlock ) {
         notificationGroupId = id
         notificationGroupTag = tag
-        notificationGroupBuilder = NotificationGroupBuilder( context, { notificationParams }, { notificationBuilder } )
+        notificationGroupBuilder = NotificationGroupBuilder( coreParams, { notificationParams }, { notificationBuilder } )
         notificationGroupBuilder!!.apply( block ).apply {
             isGroup = true
         }
@@ -129,7 +132,7 @@ class NotificationCoreBuilder internal constructor(
 
     /** [NotificationBuilder] for create a [Notification] */
     @PublishedApi // Needed for inline
-    internal val notificationBuilder = NotificationBuilder( context ) { notificationParams }
+    internal val notificationBuilder = NotificationBuilder( coreParams ) { notificationParams }
 
     /** REQUIRED block [NotificationBlock] for crete the [Notification] */
     @Suppress("MemberVisibilityCanBePrivate") // Part of public API
@@ -141,6 +144,19 @@ class NotificationCoreBuilder internal constructor(
     internal fun buildNotification() = notificationBuilder.build()
     // endregion
 }
+
+/**
+ * Params for [NotificationCoreBuilder]
+ *
+ * @param context [Context] required for create [Notification] and for provide `Resources` for Builders
+ * @param notificationId [Int] required for propagate notification id to Builders
+ * @param notificationTag OPTIONAL [String] required for propagate notification tag to Builders
+ */
+internal data class CoreParams(
+    val context: Context,
+    val notificationId: Int,
+    val notificationTag: String?
+)
 
 /** Typealias for a lambda that takes [NotificationCoreBuilder] as receiver and returns [Unit] */
 typealias NotificationCoreBlock = NotificationCoreBuilder.() -> Unit

@@ -84,6 +84,11 @@ class DemoActivity : AppCompatActivity(), CoroutineScope {
                     smallIconRes = R.drawable.ic_notification_chat
                     title = notificationTitle
                     contentText = notificationContent
+                    addAction {
+                        iconRes = R.drawable.ic_notification_chat
+                        textRes = R.string.fluent_notifications_name
+                        onAction { start<DemoActivity>() }
+                    }
                 }
 
                 if ( useGroupCheckbox.isChecked ) {
@@ -206,9 +211,9 @@ class DemoActivity : AppCompatActivity(), CoroutineScope {
     private fun restoreForm() {
         form.forEach { (name, value) ->
             when( value ) {
-                is StringValue -> value.set(preferences.getString( name, EMPTY_STRING )!!)
-                is IntValue -> value.set(preferences.getInt( name, 0 ))
-            }
+                is StringValue -> value.set( preferences.getString( name, EMPTY_STRING )!! )
+                is IntValue -> value.set( preferences.getInt( name, 0 ) )
+            }.exhaustive
         }
     }
 

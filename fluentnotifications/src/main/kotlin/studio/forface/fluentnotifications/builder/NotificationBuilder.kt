@@ -12,6 +12,7 @@ import androidx.core.app.NotificationCompat.BADGE_ICON_NONE
 import androidx.core.app.NotificationCompat.BADGE_ICON_SMALL
 import studio.forface.fluentnotifications.NotificationDsl
 import studio.forface.fluentnotifications.enum.GroupBehaviour
+import studio.forface.fluentnotifications.enum.NotificationCategory
 import studio.forface.fluentnotifications.utils.*
 import kotlin.reflect.full.primaryConstructor
 
@@ -36,6 +37,12 @@ open class NotificationBuilder @PublishedApi /* Needed for inline */ internal co
 
     @PublishedApi // Required for inline
     internal val context get()= coreParams.context
+
+    /**
+     * OPTIONAL [NotificationCategory] category for the Notification
+     * @see NotificationCompat.Builder.setCategory
+     */
+    var category: NotificationCategory? by optional()
 
     /**
      * OPTIONAL [CharSequence] content text for the Notification
@@ -186,6 +193,9 @@ open class NotificationBuilder @PublishedApi /* Needed for inline */ internal co
 
             /* Defaults */
             setDefaults( behaviour.defaults )
+
+            /* Others */
+            category?.let{ setCategory( it.platform ) }
 
             build()
         }

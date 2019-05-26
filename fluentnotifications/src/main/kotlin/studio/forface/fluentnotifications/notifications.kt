@@ -9,6 +9,7 @@ import androidx.annotation.StringRes
 import studio.forface.fluentnotifications.builder.CoreParams
 import studio.forface.fluentnotifications.builder.NotificationCoreBlock
 import studio.forface.fluentnotifications.builder.NotificationCoreBuilder
+import studio.forface.fluentnotifications.enum.NotificationCategory.SERVICE
 import studio.forface.fluentnotifications.utils.Android
 import studio.forface.fluentnotifications.utils.notificationManager
 
@@ -92,6 +93,7 @@ fun Context.cancelNotification( id: Int, tag: String? = null ) {
 /**
  * Start the receiver [Service] in foreground with the Notification created from [NotificationCoreBlock]
  * @see Service.startForeground
+ * The notification is initialized with Category [SERVICE]
  *
  * @param id REQUIRED [Int] id for create the Notification
  *
@@ -106,7 +108,11 @@ fun Service.startForeground(
     val coreParams = CoreParams( this, id )
 
     with( notificationManager ) {
-        with( NotificationCoreBuilder( coreParams ).apply( block ) ) {
+        with( NotificationCoreBuilder( coreParams ) ) {
+            // Set the default category
+            notificationBuilder.category = SERVICE
+            // Apply the user-defined block, may override the category
+            apply( block )
 
             // Create Channel
             if ( Android.OREO ) createNotificationChannel( buildChannel() )

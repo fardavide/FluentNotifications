@@ -12,6 +12,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationCompat.BADGE_ICON_NONE
 import androidx.core.app.NotificationCompat.BADGE_ICON_SMALL
 import studio.forface.fluentnotifications.NotificationDsl
+import studio.forface.fluentnotifications.enum.GroupBehaviour
 import studio.forface.fluentnotifications.utils.*
 import kotlin.reflect.full.primaryConstructor
 
@@ -29,7 +30,7 @@ import kotlin.reflect.full.primaryConstructor
  * @author Davide Giuseppe Farella
  */
 @NotificationDsl
-class NotificationBuilder internal constructor(
+open class NotificationBuilder @PublishedApi /* Needed for inline */ internal constructor(
     @PublishedApi internal val context: Context,
     private val getParams: () -> NotificationParams
 ) : ResourcedBuilder by context() {
@@ -51,10 +52,28 @@ class NotificationBuilder internal constructor(
     @StringRes var contentTextRes: Int? = null
 
     /**
+     * OPTIONAL [GroupBehaviour] for the Notification
+     * If value is not set, will inherit from the parent Group.
+     * Default value is [GroupBehaviour.ALERT_CHILDREN]
+     *
+     * @see NotificationCompat.Builder.setGroupAlertBehavior
+     */
+    var groupAlertBehaviour: GroupBehaviour? = null
+
+    /**
+     * Whether the Notification is a group of other Notifications
+     * Default is `false`, but it will be forced to `true` when [NotificationBlock] is called by
+     * [NotificationCoreBuilder.groupBy]
+     *
+     * @see NotificationCompat.Builder.setGroupSummary
+     */
+    var isGroup = false
+
+    /**
      * REQUIRED [DrawableRes] of the small icon for the Notification
      * @see NotificationCompat.Builder.setSmallIcon
      */
-    @get:DrawableRes var smallIconRes: Int by required()
+    @get:DrawableRes open var smallIconRes: Int by required()
 
     /**
      * REQUIRED [CharSequence] content title for the Notification
@@ -140,6 +159,11 @@ class NotificationBuilder internal constructor(
         return builder.run {
             setChannelId( channelId )
 
+            /* Group */
+            setGroupSummary( isGroup )
+            setGroup( groupKey )
+            setGroupAlertBehavior( ( this@NotificationBuilder.groupAlertBehaviour ?: groupAlertBehavior ).platform )
+
             /* Behaviour */
             priority = behaviour.importance.priorityPlatform
             setLights( behaviour.lightColor ?: Color.BLACK, 300, 1000 )
@@ -173,14 +197,48 @@ class NotificationBuilder internal constructor(
  * @see NotificationCompat.Builder.setChannelId
  *
  * @property behaviour [Behaviour] for [Notification]
+ *
+ * @property groupKey [String] key for grouping the [Notification
+ * @see NotificationCompat.Builder.setGroup
  */
+@PublishedApi // Needed for inline
 internal data class NotificationParams(
     val channelId: String,
-    val behaviour: Behaviour
+    val behaviour: Behaviour,
+    val groupKey: String,
+    val groupAlertBehavior: GroupBehaviour
 )
-
-/** Typealias for call the constructor of [NotificationParams] like it's a function */
-internal typealias notificationParams = NotificationParams
 
 /** Typealias for a lambda that takes [NotificationBuilder] as receiver and returns [Unit] */
 typealias NotificationBlock = NotificationBuilder.() -> Unit
+
+/**
+ * A Builder for create a [Notification] Group
+ * Inherit from [NotificationBuilder]
+ *
+ * @constructor is internal. Instances will be created from [NotificationCoreBuilder.groupBy]
+ *
+ * @see NotificationBuilder
+ * @see NotificationDsl as [DslMarker]
+ *
+ *
+ * @author Davide Giuseppe Farella
+ */
+class NotificationGroupBuilder @PublishedApi /* Needed for inline */ internal constructor(
+    context: Context,
+    getParams: () -> NotificationParams,
+    private val getChildNotificationBuilder: () -> NotificationBuilder
+) : NotificationBuilder( context, getParams ) {
+
+    /**
+     * REQUIRED [DrawableRes] of the small icon for the Notification
+     * Backed by [getChildNotificationBuilder] [smallIconRes]
+     *
+     * @see NotificationCompat.Builder.setSmallIcon
+     */
+    @get:DrawableRes override var smallIconRes: Int = 0
+        get() = if ( field != 0 ) field else getChildNotificationBuilder().smallIconRes
+}
+
+/** Typealias for a lambda that takes [NotificationGroupBuilder] as receiver and returns [Unit] */
+typealias NotificationGroupBlock = NotificationGroupBuilder.() -> Unit

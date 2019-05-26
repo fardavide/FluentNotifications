@@ -40,7 +40,7 @@ fun DependencyHandler.applyAndroidTests() {
 object Version {
 
     /* Kotlin */
-    const val kotlin =                      "1.3.30"
+    const val kotlin =                      "1.3.31"
     const val coroutines =                  "1.2.0"
 
     /* Base */

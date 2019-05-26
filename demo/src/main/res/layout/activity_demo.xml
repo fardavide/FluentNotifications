@@ -165,6 +165,85 @@
             </studio.forface.fluentnotifications.demo.ExpandableLinearLayout>
             <!-- endregion -->
 
+            <!-- region Group -->
+            <CheckBox
+                android:id="@+id/useGroupCheckbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/action_use_group"/>
+
+            <studio.forface.fluentnotifications.demo.ExpandableLinearLayout
+                android:id="@+id/groupLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Header -->
+                <studio.forface.fluentnotifications.demo.ExpandableLinearLayoutHeader
+                    android:theme="@style/App.ExpandableLinearLayoutHeader"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/group_notification_group_by" />
+
+                <!-- Id -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:helperText="@string/helper_text_required">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/groupIdInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:hint="@string/hint_group_id" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Tag -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:helperText=" ">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/groupTagInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapSentences"
+                        android:hint="@string/hint_group_tag" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Title -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:helperText="@string/helper_text_required">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/groupTitleInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapSentences"
+                        android:hint="@string/hint_group_title" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Content -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:helperText=" ">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/groupContentInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapSentences"
+                        android:hint="@string/hint_group_content" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </studio.forface.fluentnotifications.demo.ExpandableLinearLayout>
+            <!-- endregion -->
+
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

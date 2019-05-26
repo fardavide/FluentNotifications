@@ -106,7 +106,7 @@ Inherit from <a href="-style-builder/index.html">StyleBuilder</a></p>
 <p><a href="-notification-builder/index.html">NotificationBuilder</a></p>
 </td>
 <td>
-<code><span class="keyword">class </span><span class="identifier">NotificationBuilder</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">ResourcedBuilder</span></code>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">NotificationBuilder</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">ResourcedBuilder</span></code>
 <p>A Builder for create a <a href="https://developer.android.com/reference/android/app/Notification.html">Notification</a>
 Inherit from <a href="#">ResourcedBuilder</a> for provide <code>Resources</code></p>
 </td>
@@ -118,6 +118,16 @@ Inherit from <a href="#">ResourcedBuilder</a> for provide <code>Resources</code>
 <td>
 <code><span class="keyword">class </span><span class="identifier">NotificationCoreBuilder</span></code>
 <p>A Core Builder for create a Notification with its companions ( channel or other optionals )</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-notification-group-builder/index.html">NotificationGroupBuilder</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">NotificationGroupBuilder</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-notification-builder/index.html"><span class="identifier">NotificationBuilder</span></a></code>
+<p>A Builder for create a <a href="https://developer.android.com/reference/android/app/Notification.html">Notification</a> Group
+Inherit from <a href="-notification-builder/index.html">NotificationBuilder</a></p>
 </td>
 </tr>
 <tr>
@@ -252,6 +262,15 @@ Inherit from <a href="#">ResourcedBuilder</a> for provide <code>Resources</code>
 <td>
 <code><span class="keyword">typealias </span><span class="identifier">NotificationCoreBlock</span>&nbsp;<span class="symbol">=</span>&nbsp;<a href="-notification-core-builder/index.html"><span class="identifier">NotificationCoreBuilder</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
 <p>Typealias for a lambda that takes <a href="-notification-core-builder/index.html">NotificationCoreBuilder</a> as receiver and returns <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-notification-group-block.html">NotificationGroupBlock</a></p>
+</td>
+<td>
+<code><span class="keyword">typealias </span><span class="identifier">NotificationGroupBlock</span>&nbsp;<span class="symbol">=</span>&nbsp;<a href="-notification-group-builder/index.html"><span class="identifier">NotificationGroupBuilder</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Typealias for a lambda that takes <a href="-notification-group-builder/index.html">NotificationGroupBuilder</a> as receiver and returns <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></p>
 </td>
 </tr>
 <tr>

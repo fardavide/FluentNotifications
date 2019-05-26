@@ -3,12 +3,10 @@
 package studio.forface.fluentnotifications
 
 import android.content.Context
-import android.graphics.Color
 import androidx.annotation.IntegerRes
 import androidx.annotation.StringRes
-import androidx.fragment.app.FragmentActivity
-import studio.forface.fluentnotifications.builder.*
-import studio.forface.fluentnotifications.enum.NotificationImportance
+import studio.forface.fluentnotifications.builder.NotificationCoreBlock
+import studio.forface.fluentnotifications.builder.NotificationCoreBuilder
 import studio.forface.fluentnotifications.utils.Android
 import studio.forface.fluentnotifications.utils.notificationManager
 
@@ -20,8 +18,8 @@ internal var appPackageName = String()
 
 /**
  * Show a Notification created with Dsl from a [Context]
- * @param idRes a REQUIRED [IntegerRes] id for create the Notification
- * @param tagRes an OPTIONAL [StringRes] tag for create the Notification. If `null` if will be ignored
+ * @param idRes REQUIRED [IntegerRes] id for create the Notification
+ * @param tagRes OPTIONAL [StringRes] tag for create the Notification. If `null` if will be ignored
  * Default is `null`
  *
  * @see NotificationDsl as [DslMarker]
@@ -37,8 +35,8 @@ fun Context.showNotification(
 
 /**
  * Show a Notification created with Dsl from a [Context]
- * @param id a REQUIRED id for create the Notification
- * @param tag an OPTIONAL tag for create the Notification. If `null` if will be ignored
+ * @param id REQUIRED [Int] id for create the Notification
+ * @param tag OPTIONAL [CharSequence] tag for create the Notification. If `null` if will be ignored
  * Default is `null`
  *
  * @see NotificationDsl as [DslMarker]
@@ -50,11 +48,21 @@ fun Context.showNotification(
     block: NotificationCoreBlock
 ) {
     appPackageName = packageName
-    val builder = NotificationCoreBuilder( this ).apply( block )
 
     with( notificationManager ) {
-        if ( Android.OREO ) createNotificationChannel( builder.buildChannel() )
-        notify( tag.toString(), id, builder.buildNotification() )
+        with( NotificationCoreBuilder( this@showNotification ).apply( block ) ) {
+
+            // Create Channel
+            if ( Android.OREO ) createNotificationChannel( buildChannel() )
+
+            // Show Group, if any
+            buildNotificationGroup()?.let { notificationGroup ->
+                notify( notificationGroupTag.toString(), notificationGroupId, notificationGroup )
+            }
+
+            // Show Notification
+            notify( tag.toString(), id, buildNotification() )
+        }
     }
 }
 
@@ -76,51 +84,4 @@ fun Context.cancelNotification( @IntegerRes idRes: Int, @StringRes tagRes: Int? 
  */
 fun Context.cancelNotification( id: Int, tag: String? = null ) {
     notificationManager.cancel( tag, id )
-}
-
-
-/** API test purpose only. TODO remove */
-private fun Context.test() {
-
-    class EmptyActivity: FragmentActivity()
-
-    showNotification( 123, "someTag" ) {
-
-        behaviour {
-            importance = NotificationImportance.HIGH
-            lightColor = Color.RED
-            this + defaultVibration + defaultSound
-        }
-
-        channel( "channelId", "channelName" ) {
-            description = "No description"
-        }
-
-        notification {
-            smallIconRes = 0
-            title = "Title"
-            contentText = "Content"
-
-            withStyle<InboxStyle> {
-                this + "Line #1" + "Line #2" + "Line #3"
-            }
-
-            withStyle<MessagingStyle> {
-                title = "Title"
-                person {
-                    name = "Bot"
-                    bot = true
-                }
-                this +  { text = "Hello user" } +
-                        { text = "I am a bot!" }
-            }
-
-            onContentAction( autoCancel = false ) { start<EmptyActivity>() }
-            addAction {
-                iconRes = 0
-                text = "Action #1"
-                onAction { start<EmptyActivity>() }
-            }
-        }
-    }
 }

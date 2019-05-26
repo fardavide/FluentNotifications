@@ -18,4 +18,12 @@
     <string name="hint_notification_title">Notification title</string>
     <string name="hint_notification_content">Notification content</string>
 
+    <!-- Group -->
+    <string name="action_use_group">Use group</string>
+    <string name="group_notification_group_by">Group by</string>
+    <string name="hint_group_id">Group id</string>
+    <string name="hint_group_tag">Group tag</string>
+    <string name="hint_group_title">Group title</string>
+    <string name="hint_group_content">Group content</string>
+
 </resources>

@@ -1,9 +1,9 @@
 package studio.forface.fluentnotifications
 
 import android.app.NotificationManager
+import studio.forface.fluentnotifications.utils.required
 import kotlin.reflect.KClass
 import kotlin.reflect.KProperty
-import studio.forface.fluentnotifications.utils.required
 
 /**
  * An [IllegalArgumentException] that will be thrown when its impossible to resolve a resource for the required [KClass]

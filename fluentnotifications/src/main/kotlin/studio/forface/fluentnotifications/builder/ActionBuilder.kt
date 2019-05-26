@@ -3,7 +3,6 @@
 package studio.forface.fluentnotifications.builder
 
 import android.app.PendingIntent
-import android.content.Context
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.core.app.NotificationCompat
@@ -18,7 +17,7 @@ import studio.forface.fluentnotifications.utils.requiredOnce
  * Inherit from [ResourcedBuilder] for provide `Resources`
  *
  * @constructor is internal. Instances will be created from [NotificationBuilder.addAction]
- * @param context [Context] required for [ResourcedBuilder] delegation and [PendingIntentBuilder]
+ * @param coreParams [CoreParams]
  *
  * @see NotificationDsl as [DslMarker]
  *
@@ -27,8 +26,9 @@ import studio.forface.fluentnotifications.utils.requiredOnce
  */
 @NotificationDsl
 class ActionBuilder internal constructor(
-    private val context: Context
-) : ResourcedBuilder by context() {
+    @PublishedApi // Required for inline
+    internal val coreParams: CoreParams
+) : ResourcedBuilder by coreParams.context() {
 
     /** REQUIRED [DrawableRes] Icon for [NotificationCompat.Action] */
     @get:DrawableRes var iconRes: Int by required()
@@ -45,13 +45,19 @@ class ActionBuilder internal constructor(
      */
     @get:StringRes var textRes: Int? = null
 
-    /** REQUIRED block [PendingIntentBlock] for [NotificationCompat.Action] */
-    fun onAction( block: PendingIntentBlock ) {
-        intent = PendingIntentBuilder( context ).apply( block ).pendingIntent
+    /**
+     * REQUIRED block [PendingIntentBlock] for [NotificationCompat.Action]
+     *
+     * @param autoCancel [Boolean] whether the Notification need to be cancel on Action
+     * Default is `true`
+     */
+    inline fun onAction( autoCancel: Boolean = true, block: PendingIntentBlock ) {
+        intent = PendingIntentBuilder( coreParams, autoCancel ).apply( block ).pendingIntent
     }
 
     /** REQUIRED [PendingIntent] */
-    private var intent : PendingIntent by requiredOnce()
+    @PublishedApi // Required for inline
+    internal var intent : PendingIntent by requiredOnce()
 
     /** @return [NotificationCompat.Action] */
     internal fun build() = NotificationCompat.Action( iconRes, text, intent )

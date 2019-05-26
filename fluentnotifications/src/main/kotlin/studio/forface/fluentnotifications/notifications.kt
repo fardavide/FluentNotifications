@@ -5,6 +5,7 @@ package studio.forface.fluentnotifications
 import android.content.Context
 import androidx.annotation.IntegerRes
 import androidx.annotation.StringRes
+import studio.forface.fluentnotifications.builder.CoreParams
 import studio.forface.fluentnotifications.builder.NotificationCoreBlock
 import studio.forface.fluentnotifications.builder.NotificationCoreBuilder
 import studio.forface.fluentnotifications.utils.Android
@@ -48,9 +49,10 @@ fun Context.showNotification(
     block: NotificationCoreBlock
 ) {
     appPackageName = packageName
+    val coreParams = CoreParams( this, id, tag.toString() )
 
     with( notificationManager ) {
-        with( NotificationCoreBuilder( this@showNotification ).apply( block ) ) {
+        with( NotificationCoreBuilder( coreParams ).apply( block ) ) {
 
             // Create Channel
             if ( Android.OREO ) createNotificationChannel( buildChannel() )

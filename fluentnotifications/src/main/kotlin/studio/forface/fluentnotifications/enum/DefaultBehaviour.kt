@@ -2,11 +2,11 @@ package studio.forface.fluentnotifications.enum
 
 import android.annotation.TargetApi
 import android.app.NotificationChannel
-import android.os.Build
-import androidx.core.app.NotificationCompat
 import android.media.AudioAttributes
 import android.media.RingtoneManager
+import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.core.app.NotificationCompat
 
 /**
  * A set of default values for `Behaviour` for Notifications / Channels

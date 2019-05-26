@@ -114,7 +114,7 @@ class NotificationCoreBuilder internal constructor(
      * Default is `null`
      */
     @Suppress("MemberVisibilityCanBePrivate") // Part of public API
-    inline fun groupBy( id: Int, tag: CharSequence? = null, block: NotificationGroupBlock ) {
+    inline fun groupBy( id: Int, tag: CharSequence? = null, block: NotificationGroupBlock = {} ) {
         notificationGroupId = id
         notificationGroupTag = tag
         notificationGroupBuilder = NotificationGroupBuilder( coreParams, { notificationParams }, { notificationBuilder } )

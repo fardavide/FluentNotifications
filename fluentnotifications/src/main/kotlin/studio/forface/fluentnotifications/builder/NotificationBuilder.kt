@@ -83,7 +83,7 @@ open class NotificationBuilder @PublishedApi /* Needed for inline */ internal co
      *
      * @see NotificationCompat.Builder.setContentTitle
      */
-    var title: CharSequence by required { titleRes }
+    open var title: CharSequence by required { titleRes }
 
     /**
      * REQUIRED [StringRes] content title for the Notification
@@ -233,13 +233,22 @@ class NotificationGroupBuilder @PublishedApi /* Needed for inline */ internal co
 ) : NotificationBuilder( coreParams, getParams ) {
 
     /**
-     * REQUIRED [DrawableRes] of the small icon for the Notification
+     * OPTIONAL [DrawableRes] of the small icon for the Notification
      * Backed by [getChildNotificationBuilder] [smallIconRes]
      *
      * @see NotificationCompat.Builder.setSmallIcon
      */
     @get:DrawableRes override var smallIconRes: Int = 0
         get() = if ( field != 0 ) field else getChildNotificationBuilder().smallIconRes
+
+    /**
+     * OPTIONAL [CharSequence] of the Title for the Notification
+     * Backed by [getChildNotificationBuilder] [title]
+     *
+     * @see NotificationCompat.Builder.setContentTitle
+     */
+    override var title: CharSequence = EMPTY_STRING
+        get() = if ( field != EMPTY_STRING ) field else getChildNotificationBuilder().title
 }
 
 /** Typealias for a lambda that takes [NotificationGroupBuilder] as receiver and returns [Unit] */

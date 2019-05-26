@@ -14,7 +14,7 @@ object Project {
     private val major:      Int =       0
     private val minor:      Int =       1
     private val channel:    Channel =   Alpha
-    private val patch:      Int =       5
+    private val patch:      Int =       6
     private val build:      Int =       1
 
     /* Publishing */

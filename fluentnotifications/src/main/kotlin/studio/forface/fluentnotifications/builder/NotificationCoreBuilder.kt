@@ -155,7 +155,7 @@ class NotificationCoreBuilder internal constructor(
 internal data class CoreParams(
     val context: Context,
     val notificationId: Int,
-    val notificationTag: String?
+    val notificationTag: String? = null
 )
 
 /** Typealias for a lambda that takes [NotificationCoreBuilder] as receiver and returns [Unit] */

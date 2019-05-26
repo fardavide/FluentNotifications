@@ -2,6 +2,7 @@
 
 package studio.forface.fluentnotifications
 
+import android.app.Service
 import android.content.Context
 import androidx.annotation.IntegerRes
 import androidx.annotation.StringRes
@@ -13,7 +14,7 @@ import studio.forface.fluentnotifications.utils.notificationManager
 
 /**
  * A reference to the [Context.getPackageName] of the calling app.
- * This will be needed for create resolve some element from resource.
+ * This will be needed for resolve some element from resource.
  */
 internal var appPackageName = String()
 
@@ -86,4 +87,37 @@ fun Context.cancelNotification( @IntegerRes idRes: Int, @StringRes tagRes: Int? 
  */
 fun Context.cancelNotification( id: Int, tag: String? = null ) {
     notificationManager.cancel( tag, id )
+}
+
+/**
+ * Start the receiver [Service] in foreground with the Notification created from [NotificationCoreBlock]
+ * @see Service.startForeground
+ *
+ * @param id REQUIRED [Int] id for create the Notification
+ *
+ * @see NotificationDsl as [DslMarker]
+ */
+@NotificationDsl
+fun Service.startForeground(
+    id: Int,
+    block: NotificationCoreBlock
+) {
+    appPackageName = packageName
+    val coreParams = CoreParams( this, id )
+
+    with( notificationManager ) {
+        with( NotificationCoreBuilder( coreParams ).apply( block ) ) {
+
+            // Create Channel
+            if ( Android.OREO ) createNotificationChannel( buildChannel() )
+
+            // Show Group, if any
+            buildNotificationGroup()?.let { notificationGroup ->
+                notify( notificationGroupTag.toString(), notificationGroupId, notificationGroup )
+            }
+
+            // Start the service in foreground
+            startForeground( id, buildNotification() )
+        }
+    }
 }

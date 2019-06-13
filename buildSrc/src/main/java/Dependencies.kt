@@ -40,26 +40,25 @@ fun DependencyHandler.applyAndroidTests() {
 object Version {
 
     /* Kotlin */
-    const val kotlin =                      "1.3.31"
-    const val coroutines =                  "1.2.0"
+    const val kotlin =                          "1.3.31"        // Updated: Apr 25, 2019
+    const val coroutines =                      "1.2.1"         // Updated: Apr 25, 2019
 
     /* Base */
-    const val mockk =                       "1.9.3"
+    const val mockk =                           "1.9.3"         // Updated: Mar 25, 2019
 
     /* Android */
-    const val android_constraintLayout =    "2.0.0-beta1"
-    const val android_espresso =            "3.1.1"
-    const val android_gradle_plugin =       "3.3.0"
-    const val android_ktx =                 "1.1.0-alpha05"
-    const val android_material =            "1.1.0-alpha06"
-    const val android_support =             "1.1.0-alpha02"
-    const val android_test_core =           "1.1.0"
-    const val android_test_runner =         "1.1.1"
+    const val android_constraintLayout =        "2.0.0-beta1"   // Updated: May 8, 2019
+    const val android_espresso =                "3.2.0"         // Updated: May 30, 2019
+    const val android_gradle_plugin =           "3.5.0-beta03"  // Updated: May 28, 2019
+    const val android_ktx =                     "1.1.0-beta01"  // Updated: May 8, 2019
+    const val android_material =                "1.1.0-alpha07" // Updated: May 31, 2019
+    const val android_support =                 "1.0.2"         // Updated: Nov 17, 2018
+    const val androidx_test =                   "1.2.0"         // Updated: May 31, 2019
 
     /* Publishing */
-    const val publishing_bintray_plugin =   "1.8.4"
-    const val publishing_dokka_plugin =     "0.9.18"
-    const val publishing_maven_plugin =     "2.1"
+    const val publishing_bintray_plugin =       "1.8.4"         // Updated:
+    const val publishing_dokka_plugin =         "0.9.18"        // Updated: Mar 19, 2019
+    const val publishing_maven_plugin =         "2.1"           // Updated:
 }
 
 object Lib {
@@ -82,9 +81,9 @@ object Lib {
         const val espresso =                        "androidx.test.espresso:espresso-core:${Version.android_espresso}"
         const val ktx =                             "androidx.core:core-ktx:${Version.android_ktx}"
         const val material =                        "com.google.android.material:material:${Version.android_material}"
-        const val test_core =                       "androidx.test:core:${Version.android_test_core}"
-        const val test_rules =                      "androidx.test:rules:${Version.android_test_runner}"
-        const val test_runner =                     "androidx.test:runner:${Version.android_test_runner}"
+        const val test_core =                       "androidx.test:core:${Version.androidx_test}"
+        const val test_rules =                      "androidx.test:rules:${Version.androidx_test}"
+        const val test_runner =                     "androidx.test:runner:${Version.androidx_test}"
     }
 
     /* Publishing */

@@ -1,3 +1,5 @@
+initVersions()
+
 buildscript {
     repositories(repos)
     dependencies {

@@ -1,16 +1,13 @@
 import studio.forface.easygradle.dsl.`coroutines-android`
 import studio.forface.easygradle.dsl.`kotlin-jdk7`
 import studio.forface.easygradle.dsl.`kotlin-reflect`
-import studio.forface.easygradle.dsl.android.*
+import studio.forface.easygradle.dsl.android.`android-ktx`
+import studio.forface.easygradle.dsl.android.`constraint-layout`
+import studio.forface.easygradle.dsl.android.appcompat
+import studio.forface.easygradle.dsl.android.material
 import studio.forface.easygradle.dsl.implementation
 
-plugins {
-    id( "com.android.application" )
-    id( "kotlin-android" )
-    id( "kotlin-android-extensions" )
-}
-
-android { applyAndroidConfig( "studio.forface.fluentnotifications.demo" ) }
+android("studio.forface.fluentnotifications.demo")
 
 dependencies {
     implementation(project(

@@ -1,16 +1,10 @@
 import studio.forface.easygradle.dsl.*
 import studio.forface.easygradle.dsl.android.`android-ktx`
-import studio.forface.easygradle.dsl.android.android
+import studio.forface.easygradle.dsl.android.`android-work-runtime`
 import studio.forface.easygradle.dsl.android.appcompat
 import studio.forface.easygradle.dsl.android.publishAndroid
 
-plugins {
-    id( "com.android.library" )
-    id( "kotlin-android" )
-    id( "kotlin-android-extensions" )
-}
-
-android { applyAndroidConfig() }
+android()
 
 dependencies {
     implementation(
@@ -23,6 +17,8 @@ dependencies {
         `appcompat`,
         `android-ktx`
     )
+    compileOnly(`android-work-runtime`)
+
     testImplementation(
         `kotlin-test`,
         `kotlin-test-junit`,
@@ -31,4 +27,6 @@ dependencies {
 }
 
 dokka()
-publishAndroid()
+publishAndroid {
+    version = Project.version.versionName
+}

@@ -1,4 +1,5 @@
 import studio.forface.easygradle.dsl.android.Version
+import studio.forface.easygradle.dsl.android.Version.Channel.*
 
 /**
  * An object containing params for the Library

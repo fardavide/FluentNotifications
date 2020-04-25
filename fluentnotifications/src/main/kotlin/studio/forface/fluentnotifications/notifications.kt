@@ -3,16 +3,12 @@
 package studio.forface.fluentnotifications
 
 import android.app.Notification
-import android.app.Service
 import android.content.Context
 import androidx.annotation.IntegerRes
 import androidx.annotation.StringRes
-import androidx.work.ForegroundInfo
-import androidx.work.ListenableWorker
 import studio.forface.fluentnotifications.builder.CoreParams
 import studio.forface.fluentnotifications.builder.NotificationCoreBlock
 import studio.forface.fluentnotifications.builder.NotificationCoreBuilder
-import studio.forface.fluentnotifications.enum.NotificationCategory.SERVICE
 import studio.forface.fluentnotifications.utils.Android
 import studio.forface.fluentnotifications.utils.notificationManager
 
@@ -131,86 +127,4 @@ fun Context.cancelNotification(@IntegerRes idRes: Int, @StringRes tagRes: Int? =
  */
 fun Context.cancelNotification(id: Int, tag: String? = null) {
     notificationManager.cancel(tag, id)
-}
-
-
-/**
- * Start the receiver [ListenableWorker] in foreground with the Notification created from [NotificationCoreBlock]
- * @see ListenableWorker.setForegroundAsync
- * The notification is initialized with Category [SERVICE]
- *
- * @param idRes REQUIRED [IntegerRes] id for create the Notification
- * @param tagRes OPTIONAL [StringRes] tag for create the Notification. If `null` if will be ignored
- * Default is `null`
- *
- * @see NotificationDsl as [DslMarker]
- */
-@NotificationDsl
-fun ListenableWorker.setForeground(
-    @IntegerRes idRes: Int,
-    @StringRes tagRes: Int? = null,
-    block: NotificationCoreBlock
-) {
-    setForeground(applicationContext.resources.getInteger(idRes), tagRes?.let(applicationContext::getString), block)
-}
-
-/**
- * Start the receiver [ListenableWorker] in foreground with the Notification created from [NotificationCoreBlock]
- * @see ListenableWorker.setForegroundAsync
- * The notification is initialized with Category [SERVICE]
- *
- * @param id REQUIRED [Int] id for create the Notification
- * @param tag OPTIONAL [CharSequence] tag for create the Notification. If `null` if will be ignored
- * Default is `null`
- *
- * @see NotificationDsl as [DslMarker]
- */
-@NotificationDsl
-fun ListenableWorker.setForeground(
-    id: Int,
-    tag: CharSequence? = null,
-    block: NotificationCoreBlock
-) {
-    setForegroundAsync(ForegroundInfo(id, applicationContext.createNotification(id, tag, block)))
-}
-
-
-/**
- * Start the receiver [Service] in foreground with the Notification created from [NotificationCoreBlock]
- * @see Service.startForeground
- * The notification is initialized with Category [SERVICE]
- *
- * @param idRes REQUIRED [IntegerRes] id for create the Notification
- * @param tagRes OPTIONAL [StringRes] tag for create the Notification. If `null` if will be ignored
- * Default is `null`
- *
- * @see NotificationDsl as [DslMarker]
- */
-@NotificationDsl
-fun Service.startForeground(
-    @IntegerRes idRes: Int,
-    @StringRes tagRes: Int? = null,
-    block: NotificationCoreBlock
-) {
-    startForeground(resources.getInteger(idRes), tagRes?.let(::getString), block)
-}
-
-/**
- * Start the receiver [Service] in foreground with the Notification created from [NotificationCoreBlock]
- * @see Service.startForeground
- * The notification is initialized with Category [SERVICE]
- *
- * @param id REQUIRED [Int] id for create the Notification
- * @param tag OPTIONAL [CharSequence] tag for create the Notification. If `null` if will be ignored
- * Default is `null`
- *
- * @see NotificationDsl as [DslMarker]
- */
-@NotificationDsl
-fun Service.startForeground(
-    id: Int,
-    tag: CharSequence? = null,
-    block: NotificationCoreBlock
-) {
-    startForeground(id, createNotification(id, tag, block))
 }

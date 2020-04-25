@@ -8,7 +8,7 @@ import studio.forface.easygradle.dsl.android.Version.Channel.Alpha
  */
 object Project {
 
-    val version = Version(0, 2, Alpha, 1, 0)
+    val version = Version(0, 2, Alpha, 2, 0)
     const val targetSdk = 28
     const val minSdk = 16
 }

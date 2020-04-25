@@ -1,0 +1,38 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>startForeground - fluentnotifications</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">fluentnotifications</a>&nbsp;/&nbsp;<a href="../index.html">studio.forface.fluentnotifications</a>&nbsp;/&nbsp;<a href="index.html">android.app.Service</a>&nbsp;/&nbsp;<a href="./start-foreground.html">startForeground</a><br/>
+<br/>
+<h1>startForeground</h1>
+<a name="studio.forface.fluentnotifications$startForeground(android.app.Service, kotlin.Int, kotlin.Int, kotlin.Function1((studio.forface.fluentnotifications.builder.NotificationCoreBuilder, kotlin.Unit)))"></a>
+<code><span class="keyword">fun </span><a href="https://developer.android.com/reference/android/app/Service.html"><span class="identifier">Service</span></a><span class="symbol">.</span><span class="identifier">startForeground</span><span class="symbol">(</span><span class="identifier">@IntegerRes</span> <span class="identifier" id="studio.forface.fluentnotifications$startForeground(android.app.Service, kotlin.Int, kotlin.Int, kotlin.Function1((studio.forface.fluentnotifications.builder.NotificationCoreBuilder, kotlin.Unit)))/idRes">idRes</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier">@StringRes</span> <span class="identifier" id="studio.forface.fluentnotifications$startForeground(android.app.Service, kotlin.Int, kotlin.Int, kotlin.Function1((studio.forface.fluentnotifications.builder.NotificationCoreBuilder, kotlin.Unit)))/tagRes">tagRes</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="studio.forface.fluentnotifications$startForeground(android.app.Service, kotlin.Int, kotlin.Int, kotlin.Function1((studio.forface.fluentnotifications.builder.NotificationCoreBuilder, kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<a href="../../studio.forface.fluentnotifications.builder/-notification-core-block.html"><span class="identifier">NotificationCoreBlock</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Start the receiver <a href="https://developer.android.com/reference/android/app/Service.html">Service</a> in foreground with the Notification created from <a href="../../studio.forface.fluentnotifications.builder/-notification-core-block.html">NotificationCoreBlock</a></p>
+<h3>Parameters</h3>
+<p><a name="idRes"></a>
+<code>idRes</code> - REQUIRED <a href="#">IntegerRes</a> id for create the Notification</p>
+<p><a name="tagRes"></a>
+<code>tagRes</code> - OPTIONAL <a href="#">StringRes</a> tag for create the Notification. If <code>null</code> if will be ignored
+Default is <code>null</code></p>
+<p><strong>See Also</strong><br/>
+<p><a href="https://developer.android.com/reference/android/app/Service.html#startForeground(int, android.app.Notification)">Service.startForeground</a></p>
+<p><a href="../-notification-dsl/index.html">NotificationDsl</a></p>
+</p>
+<a name="studio.forface.fluentnotifications$startForeground(android.app.Service, kotlin.Int, kotlin.CharSequence, kotlin.Function1((studio.forface.fluentnotifications.builder.NotificationCoreBuilder, kotlin.Unit)))"></a>
+<code><span class="keyword">fun </span><a href="https://developer.android.com/reference/android/app/Service.html"><span class="identifier">Service</span></a><span class="symbol">.</span><span class="identifier">startForeground</span><span class="symbol">(</span><span class="identifier" id="studio.forface.fluentnotifications$startForeground(android.app.Service, kotlin.Int, kotlin.CharSequence, kotlin.Function1((studio.forface.fluentnotifications.builder.NotificationCoreBuilder, kotlin.Unit)))/id">id</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="studio.forface.fluentnotifications$startForeground(android.app.Service, kotlin.Int, kotlin.CharSequence, kotlin.Function1((studio.forface.fluentnotifications.builder.NotificationCoreBuilder, kotlin.Unit)))/tag">tag</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-char-sequence/index.html"><span class="identifier">CharSequence</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="studio.forface.fluentnotifications$startForeground(android.app.Service, kotlin.Int, kotlin.CharSequence, kotlin.Function1((studio.forface.fluentnotifications.builder.NotificationCoreBuilder, kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<a href="../../studio.forface.fluentnotifications.builder/-notification-core-block.html"><span class="identifier">NotificationCoreBlock</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Start the receiver <a href="https://developer.android.com/reference/android/app/Service.html">Service</a> in foreground with the Notification created from <a href="../../studio.forface.fluentnotifications.builder/-notification-core-block.html">NotificationCoreBlock</a></p>
+<h3>Parameters</h3>
+<p><a name="id"></a>
+<code>id</code> - REQUIRED <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a> id for create the Notification</p>
+<p><a name="tag"></a>
+<code>tag</code> - OPTIONAL <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-char-sequence/index.html">CharSequence</a> tag for create the Notification. If <code>null</code> if will be ignored
+Default is <code>null</code></p>
+<p><strong>See Also</strong><br/>
+<p><a href="https://developer.android.com/reference/android/app/Service.html#startForeground(int, android.app.Notification)">Service.startForeground</a></p>
+<p><a href="../-notification-dsl/index.html">NotificationDsl</a></p>
+</p>
+</BODY>
+</HTML>

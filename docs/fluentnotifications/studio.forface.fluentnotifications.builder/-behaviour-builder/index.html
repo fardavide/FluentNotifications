@@ -16,72 +16,65 @@ Inherit from <a href="#">ResourcedBuilder</a> for provide [Resources</p>
 <tbody>
 <tr>
 <td>
-<p><a href="importance.html">importance</a></p>
+<h4><a href="importance.html">importance</a></h4>
 </td>
 <td>
-<code><span class="keyword">var </span><span class="identifier">importance</span><span class="symbol">: </span><a href="../../studio.forface.fluentnotifications.enum/-notification-importance/index.html"><span class="identifier">NotificationImportance</span></a></code>
 <p>REQUIRED <a href="../../studio.forface.fluentnotifications.enum/-notification-importance/index.html">NotificationImportance</a> importance for the <a href="https://developer.android.com/reference/android/app/NotificationChannel.html">NotificationChannel</a> on <a href="#">Android.OREO</a> or priority on for
 <a href="#">NotificationCompat</a> on pre-Oreo
 Default is <a href="../../studio.forface.fluentnotifications.enum/-notification-importance/-d-e-f-a-u-l-t.html">NotificationImportance.DEFAULT</a></p>
-</td>
+<code><span class="keyword">var </span><span class="identifier">importance</span><span class="symbol">: </span><a href="../../studio.forface.fluentnotifications.enum/-notification-importance/index.html"><span class="identifier">NotificationImportance</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="light-color.html">lightColor</a></p>
+<h4><a href="light-color.html">lightColor</a></h4>
 </td>
 <td>
-<code><span class="keyword">var </span><span class="identifier">lightColor</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">?</span></code>
 <p>OPTIONAL <a href="#">ColorInt</a> for the Light color of the Notification / Channel
 Light will be automatically enabled / disabled whether this value is <code>null</code> or not</p>
-</td>
+<code><span class="keyword">var </span><span class="identifier">lightColor</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="light-color-res.html">lightColorRes</a></p>
+<h4><a href="light-color-res.html">lightColorRes</a></h4>
 </td>
 <td>
-<code><span class="keyword">var </span><span class="identifier">lightColorRes</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">?</span></code>
 <p>OPTIONAL <a href="#">ColorInt</a> for the Light color of the Notification / Channel
 Light will be automatically enabled / disabled whether this value is <code>null</code> or not</p>
-</td>
+<code><span class="keyword">var </span><span class="identifier">lightColorRes</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="show-badge.html">showBadge</a></p>
+<h4><a href="show-badge.html">showBadge</a></h4>
 </td>
 <td>
-<code><span class="keyword">var </span><span class="identifier">showBadge</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
 <p>Whether the Notification / Channel should show a badge
 Default is <code>true</code></p>
-</td>
+<code><span class="keyword">var </span><span class="identifier">showBadge</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="sound.html">sound</a></p>
+<h4><a href="sound.html">sound</a></h4>
 </td>
 <td>
-<code><span class="keyword">var </span><span class="identifier">sound</span><span class="symbol">: </span><a href="https://developer.android.com/reference/android/net/Uri.html"><span class="identifier">Uri</span></a><span class="symbol">?</span></code>
 <p>OPTIONAL <a href="https://developer.android.com/reference/android/net/Uri.html">Uri</a> for the Sound of the Notification / Channel</p>
-</td>
+<code><span class="keyword">var </span><span class="identifier">sound</span><span class="symbol">: </span><a href="https://developer.android.com/reference/android/net/Uri.html"><span class="identifier">Uri</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="sound-attributes.html">soundAttributes</a></p>
+<h4><a href="sound-attributes.html">soundAttributes</a></h4>
 </td>
 <td>
-<code><span class="keyword">var </span><span class="identifier">soundAttributes</span><span class="symbol">: </span><a href="https://developer.android.com/reference/android/media/AudioAttributes.html"><span class="identifier">AudioAttributes</span></a><span class="symbol">?</span></code>
 <p><a href="https://developer.android.com/reference/android/media/AudioAttributes.html">AudioAttributes</a> for the Sound of the Notification / Channel</p>
-</td>
+<code><span class="keyword">var </span><span class="identifier">soundAttributes</span><span class="symbol">: </span><a href="https://developer.android.com/reference/android/media/AudioAttributes.html"><span class="identifier">AudioAttributes</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="vibration-pattern.html">vibrationPattern</a></p>
+<h4><a href="vibration-pattern.html">vibrationPattern</a></h4>
 </td>
 <td>
-<code><span class="keyword">var </span><span class="identifier">vibrationPattern</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long-array/index.html"><span class="identifier">LongArray</span></a></code>
 <p>OPTIONAL <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long-array/index.html">LongArray</a> for the pattern of the vibration of the Notification / Channel
 Vibration will be automatically enabled / disable whether this <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long-array/index.html">LongArray</a> is empty or not</p>
-</td>
+<code><span class="keyword">var </span><span class="identifier">vibrationPattern</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long-array/index.html"><span class="identifier">LongArray</span></a></code></td>
 </tr>
 </tbody>
 </table>
@@ -90,21 +83,19 @@ Vibration will be automatically enabled / disable whether this <a href="https://
 <tbody>
 <tr>
 <td>
-<p><a href="../default-sound.html">defaultSound</a></p>
+<h4><a href="../default-sound.html">defaultSound</a></h4>
 </td>
 <td>
-<code><span class="keyword">val </span><a href="./index.html"><span class="identifier">BehaviourBuilder</span></a><span class="symbol">.</span><span class="identifier">defaultSound</span><span class="symbol">: </span><a href="../../studio.forface.fluentnotifications.enum/-default-behaviour/index.html"><span class="identifier">DefaultBehaviour</span></a></code>
 <p>A shortcut reference to <a href="../../studio.forface.fluentnotifications.enum/-default-behaviour/-s-o-u-n-d.html">DefaultBehaviour.SOUND</a> available for <a href="./index.html">BehaviourBuilder</a></p>
-</td>
+<code><span class="keyword">val </span><a href="./index.html"><span class="identifier">BehaviourBuilder</span></a><span class="symbol">.</span><span class="identifier">defaultSound</span><span class="symbol">: </span><a href="../../studio.forface.fluentnotifications.enum/-default-behaviour/index.html"><span class="identifier">DefaultBehaviour</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../default-vibration.html">defaultVibration</a></p>
+<h4><a href="../default-vibration.html">defaultVibration</a></h4>
 </td>
 <td>
-<code><span class="keyword">val </span><a href="./index.html"><span class="identifier">BehaviourBuilder</span></a><span class="symbol">.</span><span class="identifier">defaultVibration</span><span class="symbol">: </span><a href="../../studio.forface.fluentnotifications.enum/-default-behaviour/index.html"><span class="identifier">DefaultBehaviour</span></a></code>
 <p>A shortcut reference to <a href="../../studio.forface.fluentnotifications.enum/-default-behaviour/-v-i-b-r-a-t-i-o-n.html">DefaultBehaviour.VIBRATION</a> available for <a href="./index.html">BehaviourBuilder</a></p>
-</td>
+<code><span class="keyword">val </span><a href="./index.html"><span class="identifier">BehaviourBuilder</span></a><span class="symbol">.</span><span class="identifier">defaultVibration</span><span class="symbol">: </span><a href="../../studio.forface.fluentnotifications.enum/-default-behaviour/index.html"><span class="identifier">DefaultBehaviour</span></a></code></td>
 </tr>
 </tbody>
 </table>
@@ -113,12 +104,11 @@ Vibration will be automatically enabled / disable whether this <a href="https://
 <tbody>
 <tr>
 <td>
-<p><a href="../plus.html">plus</a></p>
+<h4><a href="../plus.html">plus</a></h4>
 </td>
 <td>
-<code><span class="keyword">operator</span> <span class="keyword">fun </span><a href="./index.html"><span class="identifier">BehaviourBuilder</span></a><span class="symbol">.</span><span class="identifier">plus</span><span class="symbol">(</span><span class="identifier" id="studio.forface.fluentnotifications.builder$plus(studio.forface.fluentnotifications.builder.BehaviourBuilder, studio.forface.fluentnotifications.enum.DefaultBehaviour)/default">default</span><span class="symbol">:</span>&nbsp;<a href="../../studio.forface.fluentnotifications.enum/-default-behaviour/index.html"><span class="identifier">DefaultBehaviour</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">BehaviourBuilder</span></a></code>
 <p>Plus operator for add the given <a href="../../studio.forface.fluentnotifications.enum/-default-behaviour/index.html">DefaultBehaviour</a> to <a href="#">BehaviourBuilder.defaults</a></p>
-</td>
+<code><span class="keyword">operator</span> <span class="keyword">fun </span><a href="./index.html"><span class="identifier">BehaviourBuilder</span></a><span class="symbol">.</span><span class="identifier">plus</span><span class="symbol">(</span><span class="identifier" id="studio.forface.fluentnotifications.builder$plus(studio.forface.fluentnotifications.builder.BehaviourBuilder, studio.forface.fluentnotifications.enum.DefaultBehaviour)/default">default</span><span class="symbol">:</span>&nbsp;<a href="../../studio.forface.fluentnotifications.enum/-default-behaviour/index.html"><span class="identifier">DefaultBehaviour</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">BehaviourBuilder</span></a></code></td>
 </tr>
 </tbody>
 </table>

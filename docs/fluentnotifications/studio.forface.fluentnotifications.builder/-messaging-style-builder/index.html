@@ -16,12 +16,11 @@ Inherit from <a href="../-style-builder/index.html">StyleBuilder</a></p>
 <tbody>
 <tr>
 <td>
-<p><a href="-message-concatenation.html">MessageConcatenation</a></p>
+<h4><a href="-message-concatenation.html">MessageConcatenation</a></h4>
 </td>
 <td>
-<code><span class="keyword">object </span><span class="identifier">MessageConcatenation</span></code>
 <p>An object for concatenate <a href="plus.html">plus</a> operator for <a href="#">messageBuilders</a></p>
-</td>
+<code><span class="keyword">object </span><span class="identifier">MessageConcatenation</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -30,49 +29,20 @@ Inherit from <a href="../-style-builder/index.html">StyleBuilder</a></p>
 <tbody>
 <tr>
 <td>
-<p><a href="extras.html">extras</a></p>
+<h4><a href="extras.html">extras</a></h4>
 </td>
 <td>
-<code><span class="keyword">var </span><span class="identifier">extras</span><span class="symbol">: </span><a href="https://developer.android.com/reference/android/os/Bundle.html"><span class="identifier">Bundle</span></a><span class="symbol">?</span></code>
 <p>OPTIONAL <a href="https://developer.android.com/reference/android/os/Bundle.html">Bundle</a> extras for the <a href="#">NotificationCompat.MessagingStyle</a></p>
-</td>
+<code><span class="keyword">var </span><span class="identifier">extras</span><span class="symbol">: </span><a href="https://developer.android.com/reference/android/os/Bundle.html"><span class="identifier">Bundle</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="group-conversation.html">groupConversation</a></p>
+<h4><a href="group-conversation.html">groupConversation</a></h4>
 </td>
 <td>
-<code><span class="keyword">var </span><span class="identifier">groupConversation</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
 <p>Whether the Message is a group conversation
 Default is <code>false</code></p>
-</td>
-</tr>
-</tbody>
-</table>
-<h3>Inherited Properties</h3>
-<table>
-<tbody>
-<tr>
-<td>
-<p><a href="../-style-builder/title.html">title</a></p>
-</td>
-<td>
-<code><span class="keyword">var </span><span class="identifier">title</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-char-sequence/index.html"><span class="identifier">CharSequence</span></a><span class="symbol">?</span></code>
-<p>OPTIONAL <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-char-sequence/index.html">CharSequence</a> content title for the <a href="#">NotificationCompat.Style</a>
-It is optional since if this value is not provided, <code>notificationTitle</code> ( Title of the Notification that owns
-this Style ) will be used</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="../-style-builder/title-res.html">titleRes</a></p>
-</td>
-<td>
-<code><span class="keyword">var </span><span class="identifier">titleRes</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">?</span></code>
-<p>OPTIONAL <a href="#">StringRes</a> content title for the <a href="#">NotificationCompat.Style</a>
-It is optional since if this value is not provided, <code>notificationTitle</code> ( Title of the Notification that owns
-this Style ) will be used</p>
-</td>
+<code><span class="keyword">var </span><span class="identifier">groupConversation</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
 </tr>
 </tbody>
 </table>
@@ -81,31 +51,29 @@ this Style ) will be used</p>
 <tbody>
 <tr>
 <td>
-<p><a href="create-person.html">createPerson</a></p>
+<h4><a href="create-person.html">createPerson</a></h4>
 </td>
 <td>
 <code><span class="keyword">fun </span><span class="identifier">createPerson</span><span class="symbol">(</span><span class="identifier" id="studio.forface.fluentnotifications.builder.MessagingStyleBuilder$createPerson(kotlin.Function1((studio.forface.fluentnotifications.builder.PersonBuilder, kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<a href="../-person-block.html"><span class="identifier">PersonBlock</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Person</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="person.html">person</a></p>
+<h4><a href="person.html">person</a></h4>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">person</span><span class="symbol">(</span><span class="identifier" id="studio.forface.fluentnotifications.builder.MessagingStyleBuilder$person(kotlin.Function1((studio.forface.fluentnotifications.builder.PersonBuilder, kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<a href="../-person-block.html"><span class="identifier">PersonBlock</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
 <p>REQUIRED <a href="../-person-block.html">PersonBlock</a> for create <a href="#">Person</a> for <a href="#">NotificationCompat.MessagingStyle</a></p>
-</td>
+<code><span class="keyword">fun </span><span class="identifier">person</span><span class="symbol">(</span><span class="identifier" id="studio.forface.fluentnotifications.builder.MessagingStyleBuilder$person(kotlin.Function1((studio.forface.fluentnotifications.builder.PersonBuilder, kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<a href="../-person-block.html"><span class="identifier">PersonBlock</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="plus.html">plus</a></p>
+<h4><a href="plus.html">plus</a></h4>
 </td>
 <td>
-<code><span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">plus</span><span class="symbol">(</span><span class="identifier" id="studio.forface.fluentnotifications.builder.MessagingStyleBuilder$plus(kotlin.Function1((studio.forface.fluentnotifications.builder.MessageBuilder, kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<a href="../-message-block.html"><span class="identifier">MessageBlock</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="-message-concatenation.html"><span class="identifier">MessagingStyleBuilder.MessageConcatenation</span></a></code>
 <p>Add a <a href="#">Message</a> to <a href="#">NotificationCompat.MessagingStyle</a></p>
-<code><span class="keyword">operator</span> <span class="keyword">fun </span><a href="-message-concatenation.html"><span class="identifier">MessagingStyleBuilder.MessageConcatenation</span></a><span class="symbol">.</span><span class="identifier">plus</span><span class="symbol">(</span><span class="identifier" id="studio.forface.fluentnotifications.builder.MessagingStyleBuilder$plus(studio.forface.fluentnotifications.builder.MessagingStyleBuilder.MessageConcatenation, kotlin.Function1((studio.forface.fluentnotifications.builder.MessageBuilder, kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<a href="../-message-block.html"><span class="identifier">MessageBlock</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="-message-concatenation.html"><span class="identifier">MessagingStyleBuilder.MessageConcatenation</span></a></code>
+<code><span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">plus</span><span class="symbol">(</span><span class="identifier" id="studio.forface.fluentnotifications.builder.MessagingStyleBuilder$plus(kotlin.Function1((studio.forface.fluentnotifications.builder.MessageBuilder, kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<a href="../-message-block.html"><span class="identifier">MessageBlock</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">MessageConcatenation</span></code>
 <p>Add a <a href="#">Message</a> to <a href="#">NotificationCompat.MessagingStyle</a> from another <a href="#">Message</a>
 E.g. <code>this + { ... &lt;build message&gt; ... } + { ... &lt;build message&gt; ... }</code></p>
-</td>
+<code><span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">MessageConcatenation</span><span class="symbol">.</span><span class="identifier">plus</span><span class="symbol">(</span><span class="identifier" id="studio.forface.fluentnotifications.builder.MessagingStyleBuilder$plus(studio.forface.fluentnotifications.builder.MessagingStyleBuilder.MessageConcatenation, kotlin.Function1((studio.forface.fluentnotifications.builder.MessageBuilder, kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<a href="../-message-block.html"><span class="identifier">MessageBlock</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">MessageConcatenation</span></code></td>
 </tr>
 </tbody>
 </table>

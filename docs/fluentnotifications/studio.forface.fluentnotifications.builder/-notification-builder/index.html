@@ -16,74 +16,75 @@ Inherit from <a href="#">ResourcedBuilder</a> for provide <code>Resources</code>
 <tbody>
 <tr>
 <td>
-<p><a href="content-text.html">contentText</a></p>
+<h4><a href="category.html">category</a></h4>
 </td>
 <td>
-<code><span class="keyword">var </span><span class="identifier">contentText</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-char-sequence/index.html"><span class="identifier">CharSequence</span></a><span class="symbol">?</span></code>
+<p>OPTIONAL <a href="../../studio.forface.fluentnotifications.enum/-notification-category/index.html">NotificationCategory</a> category for the Notification</p>
+<code><span class="keyword">var </span><span class="identifier">category</span><span class="symbol">: </span><a href="../../studio.forface.fluentnotifications.enum/-notification-category/index.html"><span class="identifier">NotificationCategory</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="content-text.html">contentText</a></h4>
+</td>
+<td>
 <p>OPTIONAL <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-char-sequence/index.html">CharSequence</a> content text for the Notification
 Backed by <a href="content-text-res.html">contentTextRes</a></p>
-</td>
+<code><span class="keyword">var </span><span class="identifier">contentText</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-char-sequence/index.html"><span class="identifier">CharSequence</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="content-text-res.html">contentTextRes</a></p>
+<h4><a href="content-text-res.html">contentTextRes</a></h4>
 </td>
 <td>
-<code><span class="keyword">var </span><span class="identifier">contentTextRes</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">?</span></code>
 <p>OPTIONAL <a href="#">StringRes</a> content text for the Notification
 Backing value of <a href="content-text.html">contentText</a></p>
-</td>
+<code><span class="keyword">var </span><span class="identifier">contentTextRes</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="group-alert-behaviour.html">groupAlertBehaviour</a></p>
+<h4><a href="group-alert-behaviour.html">groupAlertBehaviour</a></h4>
 </td>
 <td>
-<code><span class="keyword">var </span><span class="identifier">groupAlertBehaviour</span><span class="symbol">: </span><a href="../../studio.forface.fluentnotifications.enum/-group-behaviour/index.html"><span class="identifier">GroupBehaviour</span></a><span class="symbol">?</span></code>
 <p>OPTIONAL <a href="../../studio.forface.fluentnotifications.enum/-group-behaviour/index.html">GroupBehaviour</a> for the Notification
 If value is not set, will inherit from the parent Group.
 Default value is <a href="../../studio.forface.fluentnotifications.enum/-group-behaviour/-a-l-e-r-t_-c-h-i-l-d-r-e-n.html">GroupBehaviour.ALERT_CHILDREN</a></p>
-</td>
+<code><span class="keyword">var </span><span class="identifier">groupAlertBehaviour</span><span class="symbol">: </span><a href="../../studio.forface.fluentnotifications.enum/-group-behaviour/index.html"><span class="identifier">GroupBehaviour</span></a><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="is-group.html">isGroup</a></p>
+<h4><a href="is-group.html">isGroup</a></h4>
 </td>
 <td>
-<code><span class="keyword">var </span><span class="identifier">isGroup</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
 <p>Whether the Notification is a group of other Notifications
 Default is <code>false</code>, but it will be forced to <code>true</code> when <a href="../-notification-block.html">NotificationBlock</a> is called by
 <a href="../-notification-core-builder/group-by.html">NotificationCoreBuilder.groupBy</a></p>
-</td>
+<code><span class="keyword">var </span><span class="identifier">isGroup</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="small-icon-res.html">smallIconRes</a></p>
+<h4><a href="small-icon-res.html">smallIconRes</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">smallIconRes</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
 <p>REQUIRED <a href="#">DrawableRes</a> of the small icon for the Notification</p>
-</td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">smallIconRes</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="title.html">title</a></p>
+<h4><a href="title.html">title</a></h4>
 </td>
 <td>
-<code><span class="keyword">var </span><span class="identifier">title</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-char-sequence/index.html"><span class="identifier">CharSequence</span></a></code>
 <p>REQUIRED <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-char-sequence/index.html">CharSequence</a> content title for the Notification
 Backed by <a href="title-res.html">titleRes</a></p>
-</td>
+<code><span class="keyword">open</span> <span class="keyword">var </span><span class="identifier">title</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-char-sequence/index.html"><span class="identifier">CharSequence</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="title-res.html">titleRes</a></p>
+<h4><a href="title-res.html">titleRes</a></h4>
 </td>
 <td>
-<code><span class="keyword">var </span><span class="identifier">titleRes</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">?</span></code>
 <p>REQUIRED <a href="#">StringRes</a> content title for the Notification
 Backing value of <a href="title.html">title</a></p>
-</td>
+<code><span class="keyword">var </span><span class="identifier">titleRes</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">?</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -92,33 +93,30 @@ Backing value of <a href="title.html">title</a></p>
 <tbody>
 <tr>
 <td>
-<p><a href="add-action.html">addAction</a></p>
+<h4><a href="add-action.html">addAction</a></h4>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">addAction</span><span class="symbol">(</span><span class="identifier" id="studio.forface.fluentnotifications.builder.NotificationBuilder$addAction(kotlin.Function1((studio.forface.fluentnotifications.builder.ActionBuilder, kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<a href="../-action-block.html"><span class="identifier">ActionBlock</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
 <p>OPTIONAL block <a href="../-action-block.html">ActionBlock</a> for add an Action to the Notification</p>
-</td>
+<code><span class="keyword">fun </span><span class="identifier">addAction</span><span class="symbol">(</span><span class="identifier" id="studio.forface.fluentnotifications.builder.NotificationBuilder$addAction(kotlin.Function1((studio.forface.fluentnotifications.builder.ActionBuilder, kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<a href="../-action-block.html"><span class="identifier">ActionBlock</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="on-content-action.html">onContentAction</a></p>
+<h4><a href="on-content-action.html">onContentAction</a></h4>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">onContentAction</span><span class="symbol">(</span><span class="identifier" id="studio.forface.fluentnotifications.builder.NotificationBuilder$onContentAction(kotlin.Boolean, kotlin.Function1((studio.forface.fluentnotifications.builder.PendingIntentBuilder, kotlin.Unit)))/autoCancel">autoCancel</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;true<span class="symbol">, </span><span class="identifier" id="studio.forface.fluentnotifications.builder.NotificationBuilder$onContentAction(kotlin.Boolean, kotlin.Function1((studio.forface.fluentnotifications.builder.PendingIntentBuilder, kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<a href="../-pending-intent-block.html"><span class="identifier">PendingIntentBlock</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
 <p>OPTIONAL block <a href="../-pending-intent-block.html">PendingIntentBlock</a> for add an action on Content</p>
-<code><span class="keyword">fun </span><span class="identifier">onContentAction</span><span class="symbol">(</span><span class="identifier" id="studio.forface.fluentnotifications.builder.NotificationBuilder$onContentAction(android.app.PendingIntent, kotlin.Boolean)/pendingIntent">pendingIntent</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/app/PendingIntent.html"><span class="identifier">PendingIntent</span></a><span class="symbol">, </span><span class="identifier" id="studio.forface.fluentnotifications.builder.NotificationBuilder$onContentAction(android.app.PendingIntent, kotlin.Boolean)/autoCancel">autoCancel</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;true<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<code><span class="keyword">fun </span><span class="identifier">onContentAction</span><span class="symbol">(</span><span class="identifier" id="studio.forface.fluentnotifications.builder.NotificationBuilder$onContentAction(kotlin.Boolean, kotlin.Function1((studio.forface.fluentnotifications.builder.PendingIntentBuilder, kotlin.Unit)))/autoCancel">autoCancel</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;true<span class="symbol">, </span><span class="identifier" id="studio.forface.fluentnotifications.builder.NotificationBuilder$onContentAction(kotlin.Boolean, kotlin.Function1((studio.forface.fluentnotifications.builder.PendingIntentBuilder, kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<a href="../-pending-intent-block.html"><span class="identifier">PendingIntentBlock</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
 <p>OPTIONAL <a href="https://developer.android.com/reference/android/app/PendingIntent.html">PendingIntent</a> or add an action on Content</p>
-</td>
+<code><span class="keyword">fun </span><span class="identifier">onContentAction</span><span class="symbol">(</span><span class="identifier" id="studio.forface.fluentnotifications.builder.NotificationBuilder$onContentAction(android.app.PendingIntent, kotlin.Boolean)/pendingIntent">pendingIntent</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/app/PendingIntent.html"><span class="identifier">PendingIntent</span></a><span class="symbol">, </span><span class="identifier" id="studio.forface.fluentnotifications.builder.NotificationBuilder$onContentAction(android.app.PendingIntent, kotlin.Boolean)/autoCancel">autoCancel</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;true<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="with-style.html">withStyle</a></p>
+<h4><a href="with-style.html">withStyle</a></h4>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">S</span><span class="symbol">&gt;</span> <span class="identifier">withStyle</span><span class="symbol">(</span><span class="identifier" id="studio.forface.fluentnotifications.builder.NotificationBuilder$withStyle(kotlin.Function1((studio.forface.fluentnotifications.builder.NotificationBuilder.withStyle.S, kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<a href="with-style.html#S"><span class="identifier">S</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a>&nbsp;<span class="symbol">=</span>&nbsp;{}<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
 <p>OPTIONAL block that take a sub-type of <a href="with-style.html#S">NotificationStyle</a> for build a <a href="#">NotificationCompat.Style</a> for the
 Notification</p>
-</td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">S</span><span class="symbol">&gt;</span> <span class="identifier">withStyle</span><span class="symbol">(</span><span class="identifier" id="studio.forface.fluentnotifications.builder.NotificationBuilder$withStyle(kotlin.Function1((studio.forface.fluentnotifications.builder.NotificationBuilder.withStyle.S, kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<span class="identifier">S</span><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a>&nbsp;<span class="symbol">=</span>&nbsp;{}<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 </tbody>
 </table>
@@ -127,13 +125,12 @@ Notification</p>
 <tbody>
 <tr>
 <td>
-<p><a href="../-notification-group-builder/index.html">NotificationGroupBuilder</a></p>
+<h4><a href="../-notification-group-builder/index.html">NotificationGroupBuilder</a></h4>
 </td>
 <td>
-<code><span class="keyword">class </span><span class="identifier">NotificationGroupBuilder</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">NotificationBuilder</span></a></code>
 <p>A Builder for create a <a href="https://developer.android.com/reference/android/app/Notification.html">Notification</a> Group
 Inherit from <a href="./index.html">NotificationBuilder</a></p>
-</td>
+<code><span class="keyword">class </span><span class="identifier">NotificationGroupBuilder</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">NotificationBuilder</span></a></code></td>
 </tr>
 </tbody>
 </table>

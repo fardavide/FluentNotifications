@@ -8,12 +8,11 @@ repositories {
 }
 
 dependencies {
-    val android = "3.4.0"
-    val dokka = "0.9.18"
-    val bintray = "1.8.4"
+    val androidGradlePlugin =   "3.6.3"         // Released: Apr 17, 2020
+    val dokka =                 "0.10.1"        // Released: Feb 04, 2020
+    val easyGradle =            "1.2.3-beta-4"  // Released: Mar 01, 2020
 
-    implementation("com.android.tools.build:gradle:$android" )
-    implementation("org.jetbrains.dokka:dokka-gradle-plugin:$dokka" )
-    implementation("org.jetbrains.dokka:dokka-android-gradle-plugin:$dokka" )
-    implementation("com.jfrog.bintray.gradle:gradle-bintray-plugin:$bintray" )
+    implementation("com.android.tools.build:gradle:$androidGradlePlugin")
+    implementation("org.jetbrains.dokka:dokka-gradle-plugin:$dokka")
+    implementation("studio.forface.easygradle:dsl-android:$easyGradle")
 }

@@ -1,26 +1,30 @@
 import com.android.build.gradle.TestedExtension
+import org.gradle.api.JavaVersion
+import studio.forface.easygradle.dsl.android.version
 
 fun TestedExtension.applyAndroidConfig( appId: String? = null ) {
-    compileSdkVersion( Project.targetSdk )
+    compileSdkVersion(Project.targetSdk)
     defaultConfig {
+
         appId?.let { applicationId = it }
-        minSdkVersion( Project.minSdk )
-        targetSdkVersion( Project.targetSdk )
-        versionCode = Project.versionCode
-        versionName = Project.versionName
+        version = Project.version
+
+        minSdkVersion(Project.minSdk)
+        targetSdkVersion(Project.targetSdk)
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
     sourceSets {
-        getByName( "main" ).java.srcDirs( "src/main/kotlin" )
-        getByName( "test" ).java.srcDirs( "src/test/kotlin" )
-        getByName( "androidTest" ).java.srcDirs( "src/androidTest/kotlin" )
+        getByName("main").java.srcDirs("src/main/kotlin")
+        getByName("test").java.srcDirs("src/test/kotlin")
+        getByName("androidTest").java.srcDirs("src/androidTest/kotlin")
     }
     compileOptions {
-        sourceCompatibility = Project.jdkVersion
-        targetCompatibility = Project.jdkVersion
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = sourceCompatibility
     }
     packagingOptions {
-        exclude( "META-INF/atomicfu.kotlin_module" )
+        exclude("META-INF/atomicfu.kotlin_module")
     }
 }

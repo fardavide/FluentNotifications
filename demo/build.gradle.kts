@@ -1,3 +1,9 @@
+import studio.forface.easygradle.dsl.`coroutines-android`
+import studio.forface.easygradle.dsl.`kotlin-jdk7`
+import studio.forface.easygradle.dsl.`kotlin-reflect`
+import studio.forface.easygradle.dsl.android.*
+import studio.forface.easygradle.dsl.implementation
+
 plugins {
     id( "com.android.application" )
     id( "kotlin-android" )
@@ -7,14 +13,17 @@ plugins {
 android { applyAndroidConfig( "studio.forface.fluentnotifications.demo" ) }
 
 dependencies {
-    implementation( project( Module.fluentNotifications ) )
+    implementation(project(
+        Module.fluentNotifications),
 
-    implementation( Lib.kotlin )
-    implementation( Lib.coroutines_android )
-    implementation( Lib.reflect )
+        // Kotlin
+        `kotlin-jdk7`,
+        `kotlin-reflect`,
+        `coroutines-android`,
 
-    implementation( Lib.Android.appcompat )
-    implementation( Lib.Android.constraintLayout )
-    implementation( Lib.Android.ktx )
-    implementation( Lib.Android.material )
+        // Android
+        `appcompat`,
+        `constraint-layout`,
+        `android-ktx`,
+        `material`)
 }

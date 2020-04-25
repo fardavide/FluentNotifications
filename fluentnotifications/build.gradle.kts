@@ -1,3 +1,9 @@
+import studio.forface.easygradle.dsl.*
+import studio.forface.easygradle.dsl.android.`android-ktx`
+import studio.forface.easygradle.dsl.android.android
+import studio.forface.easygradle.dsl.android.appcompat
+import studio.forface.easygradle.dsl.android.publishAndroid
+
 plugins {
     id( "com.android.library" )
     id( "kotlin-android" )
@@ -7,14 +13,22 @@ plugins {
 android { applyAndroidConfig() }
 
 dependencies {
-    implementation( Lib.kotlin )
-    implementation( Lib.reflect )
+    implementation(
 
-    implementation( Lib.Android.appcompat )
-    implementation( Lib.Android.ktx )
+        // Kotlin
+        `kotlin-jdk7`,
+        `kotlin-reflect`,
 
-    applyTests()
+        // Android
+        `appcompat`,
+        `android-ktx`
+    )
+    testImplementation(
+        `kotlin-test`,
+        `kotlin-test-junit`,
+        `mockk-android`
+    )
 }
 
-applyDokka()
-publish( "fluentnotifications" )
+dokka()
+publishAndroid()

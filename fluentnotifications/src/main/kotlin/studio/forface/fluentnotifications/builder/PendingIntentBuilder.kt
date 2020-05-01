@@ -12,9 +12,23 @@ import androidx.annotation.IntegerRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
 import studio.forface.fluentnotifications.NotificationDsl
-import studio.forface.fluentnotifications.utils.*
+import studio.forface.fluentnotifications.utils.Android
+import studio.forface.fluentnotifications.utils.ResourcedBuilder
+import studio.forface.fluentnotifications.utils.createIntent
+import studio.forface.fluentnotifications.utils.invoke
+import studio.forface.fluentnotifications.utils.notificationManager
+import studio.forface.fluentnotifications.utils.requiredOnce
+import studio.forface.fluentnotifications.utils.resourceOrSelf
 import kotlin.reflect.full.isSubclassOf
-import studio.forface.fluentnotifications.utils.Intent as newIntent
+
+/*
+ * TODO return parameter for action, for ensure an action has been set
+ *  Example:
+ *  // no complaint
+ *  `` onContentAction {  } ``
+ *  // complaint
+ *  `` onContentAction { start<MyActivity>() } ``
+ */
 
 /**
  * A Builder for create a [PendingIntent]

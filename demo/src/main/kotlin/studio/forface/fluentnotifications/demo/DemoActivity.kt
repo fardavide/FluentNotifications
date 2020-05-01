@@ -8,16 +8,22 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.activity_demo.*
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.Default
 import kotlinx.coroutines.Dispatchers.Main
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.consumeEach
 import kotlinx.coroutines.channels.ticker
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import studio.forface.fluentnotifications.builder.channel
 import studio.forface.fluentnotifications.demo.DemoActivity.ValueWrapper.Constructors.int
 import studio.forface.fluentnotifications.demo.DemoActivity.ValueWrapper.Constructors.string
 import studio.forface.fluentnotifications.demo.DemoActivity.ValueWrapper.IntValue
 import studio.forface.fluentnotifications.demo.DemoActivity.ValueWrapper.StringValue
+import studio.forface.fluentnotifications.enum.DefaultBehaviour
 import studio.forface.fluentnotifications.showNotification
 import kotlin.math.absoluteValue
 import kotlin.random.Random
@@ -79,6 +85,11 @@ class DemoActivity : AppCompatActivity(), CoroutineScope {
             showNotification( notificationId, notificationTag ) {
 
                 channel( channelId, channelName )
+
+                behaviour {
+                    + DefaultBehaviour.SOUND
+                    + DefaultBehaviour.VIBRATION
+                }
 
                 notification {
                     smallIconRes = R.drawable.ic_notification_chat

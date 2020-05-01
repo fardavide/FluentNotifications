@@ -24,6 +24,14 @@ Inherit from <a href="#">ResourcedBuilder</a> for provide <code>Resources</code>
 </tr>
 <tr>
 <td>
+<h4><a href="cleanable.html">cleanable</a></h4>
+</td>
+<td>
+<p>OPTIONAL <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a> whether the Notification can be cleared by user</p>
+<code><span class="keyword">var </span><span class="identifier">cleanable</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
 <h4><a href="content-text.html">contentText</a></h4>
 </td>
 <td>
@@ -108,6 +116,14 @@ Backing value of <a href="title.html">title</a></p>
 <code><span class="keyword">fun </span><span class="identifier">onContentAction</span><span class="symbol">(</span><span class="identifier" id="studio.forface.fluentnotifications.builder.NotificationBuilder$onContentAction(kotlin.Boolean, kotlin.Function1((studio.forface.fluentnotifications.builder.PendingIntentBuilder, kotlin.Unit)))/autoCancel">autoCancel</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;true<span class="symbol">, </span><span class="identifier" id="studio.forface.fluentnotifications.builder.NotificationBuilder$onContentAction(kotlin.Boolean, kotlin.Function1((studio.forface.fluentnotifications.builder.PendingIntentBuilder, kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<a href="../-pending-intent-block.html"><span class="identifier">PendingIntentBlock</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
 <p>OPTIONAL <a href="https://developer.android.com/reference/android/app/PendingIntent.html">PendingIntent</a> or add an action on Content</p>
 <code><span class="keyword">fun </span><span class="identifier">onContentAction</span><span class="symbol">(</span><span class="identifier" id="studio.forface.fluentnotifications.builder.NotificationBuilder$onContentAction(android.app.PendingIntent, kotlin.Boolean)/pendingIntent">pendingIntent</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/app/PendingIntent.html"><span class="identifier">PendingIntent</span></a><span class="symbol">, </span><span class="identifier" id="studio.forface.fluentnotifications.builder.NotificationBuilder$onContentAction(android.app.PendingIntent, kotlin.Boolean)/autoCancel">autoCancel</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;true<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="set-progress.html">setProgress</a></h4>
+</td>
+<td>
+<p>OPTIONAL progress for the Notification</p>
+<code><span class="keyword">fun </span><span class="identifier">setProgress</span><span class="symbol">(</span><span class="identifier" id="studio.forface.fluentnotifications.builder.NotificationBuilder$setProgress(kotlin.Int, kotlin.Int, kotlin.Boolean)/progress">progress</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="studio.forface.fluentnotifications.builder.NotificationBuilder$setProgress(kotlin.Int, kotlin.Int, kotlin.Boolean)/max">max</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="studio.forface.fluentnotifications.builder.NotificationBuilder$setProgress(kotlin.Int, kotlin.Int, kotlin.Boolean)/indeterminate">indeterminate</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>

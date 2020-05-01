@@ -13,7 +13,12 @@ import androidx.core.app.NotificationCompat.BADGE_ICON_SMALL
 import studio.forface.fluentnotifications.NotificationDsl
 import studio.forface.fluentnotifications.enum.GroupBehaviour
 import studio.forface.fluentnotifications.enum.NotificationCategory
-import studio.forface.fluentnotifications.utils.*
+import studio.forface.fluentnotifications.utils.EMPTY_STRING
+import studio.forface.fluentnotifications.utils.ResourcedBuilder
+import studio.forface.fluentnotifications.utils.invoke
+import studio.forface.fluentnotifications.utils.optional
+import studio.forface.fluentnotifications.utils.required
+import studio.forface.fluentnotifications.utils.setDefaults
 import kotlin.reflect.full.primaryConstructor
 
 /**
@@ -43,6 +48,12 @@ open class NotificationBuilder @PublishedApi /* Needed for inline */ internal co
      * @see NotificationCompat.Builder.setCategory
      */
     var category: NotificationCategory? by optional()
+
+    /**
+     * OPTIONAL [Boolean] whether the Notification can be cleared by user
+     * @see NotificationCompat.Builder.setOngoing ( cleanable != ongoing )
+     */
+    var cleanable: Boolean = true
 
     /**
      * OPTIONAL [CharSequence] content text for the Notification
@@ -135,6 +146,14 @@ open class NotificationBuilder @PublishedApi /* Needed for inline */ internal co
     }
 
     /**
+     * OPTIONAL progress for the Notification
+     * @see NotificationCompat.Builder.setProgress
+     */
+    fun setProgress(progress: Int, max: Int, indeterminate: Boolean = false) {
+        progressHolder = ProgressHolder(progress, max, indeterminate)
+    }
+
+    /**
      * OPTIONAL block that take a sub-type of [NotificationStyle] [S] for build a [NotificationCompat.Style] for the
      * Notification
      *
@@ -145,7 +164,6 @@ open class NotificationBuilder @PublishedApi /* Needed for inline */ internal co
         styleBuilder = builder.apply( block )
     }
 
-    /** A [NotificationCompat.Builder] for create a [Notification] */
     @Suppress( "DEPRECATION" ) /* NotificationCompat.Builder constructor without a Channel's id is deprecated. But we
     will add the id later */
     private val builder = NotificationCompat.Builder( context )
@@ -158,6 +176,8 @@ open class NotificationBuilder @PublishedApi /* Needed for inline */ internal co
 
     /** Whether the Notification need to be cancel on Content Action ( [NotificationCompat.Builder.setAutoCancel] ) */
     private var autoCancelOnContentAction = false
+
+    private var progressHolder: ProgressHolder? = null
 
     /** An OPTIONAL instance of [StyleBuilder] for set the Style of the Notification */
     @PublishedApi // Needed for inline
@@ -178,6 +198,7 @@ open class NotificationBuilder @PublishedApi /* Needed for inline */ internal co
             setLights( behaviour.lightColor ?: Color.BLACK, 300, 1000 )
             setSound( behaviour.soundUri )
             setVibrate( behaviour.vibrationPattern )
+            setOngoing(!cleanable)
 
             /* Style */
             setSmallIcon( smallIconRes )
@@ -196,11 +217,20 @@ open class NotificationBuilder @PublishedApi /* Needed for inline */ internal co
 
             /* Others */
             category?.let{ setCategory( it.platform ) }
+            progressHolder?.let { setProgress(it.max, it.progress, it.indeterminate) }
 
             build()
         }
     }
 }
+
+
+private data class ProgressHolder(
+    val progress: Int,
+    val max: Int,
+    val indeterminate: Boolean
+)
+
 
 /**
  * Parameters for [NotificationBuilder]

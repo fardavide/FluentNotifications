@@ -98,6 +98,14 @@ class BehaviourBuilder internal constructor(
      */
     var vibrationPattern: LongArray = longArrayOf()
 
+    /**
+     * Plus operator for add the receiver [DefaultBehaviour] to [BehaviourBuilder.defaults]
+     * @return [DefaultBehaviour]
+     */
+    operator fun DefaultBehaviour.unaryPlus() = apply {
+        defaults += this
+    }
+
     /** @return [Behaviour] with the define params */
     internal fun build() = Behaviour(
         defaults =          defaults,
@@ -157,6 +165,7 @@ typealias BehaviourBlock = BehaviourBuilder.() -> Unit
  * Plus operator for add the given [DefaultBehaviour] to [BehaviourBuilder.defaults]
  * @return [DefaultBehaviour]
  */
+@Deprecated("Use 'unaryPlus' operator", ReplaceWith("+ default"))
 operator fun BehaviourBuilder.plus( default: DefaultBehaviour ) = apply {
     defaults += default
 }

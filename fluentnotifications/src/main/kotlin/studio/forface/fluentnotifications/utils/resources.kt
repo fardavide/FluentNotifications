@@ -89,17 +89,21 @@ internal inline operator fun <reified T : Any> Resources.get( resourceId: Int ) 
 @PublishedApi
 internal operator fun <T : Any> Resources.get( tClass: KClass<T>, resourceId: Int ) : T {
     @Suppress("UNCHECKED_CAST", "IMPLICIT_CAST_TO_ANY") // Cannot have a checked cast since T is Any
-    return when ( tClass ) {
+    return when (tClass) {
 
         /* String and Numbers */
-        CharSequence::class -> getText( resourceId )
-        Int::class -> getInteger( resourceId )
+        CharSequence::class -> getText(resourceId)
+        String::class -> getString(resourceId)
+        Int::class -> getInteger(resourceId)
 
         /* Images */
-        Bitmap::class -> BitmapFactory.decodeResource( this, resourceId ) // This will create a low-res Bitmap
-        Drawable::class -> @Suppress("DEPRECATION") /* Theme actually not supported */ getDrawable( resourceId )
-        IconCompat::class -> IconCompat.createWithResource( this, appPackageName, resourceId )
+        // This will create a low-res Bitmap
+        Bitmap::class -> BitmapFactory.decodeResource(this, resourceId)
+        Drawable::class ->
+            @Suppress("DEPRECATION") /* Theme actually not supported */
+            getDrawable(resourceId)
+        IconCompat::class -> IconCompat.createWithResource(this, appPackageName, resourceId)
 
-        else -> throw IllegalResourceException( tClass )
+        else -> throw IllegalResourceException(tClass)
     } as T
 }

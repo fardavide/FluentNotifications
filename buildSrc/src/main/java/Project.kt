@@ -1,5 +1,5 @@
-import studio.forface.easygradle.dsl.android.*
-import studio.forface.easygradle.dsl.android.Version.Channel.*
+import studio.forface.easygradle.dsl.android.Version
+import studio.forface.easygradle.dsl.android.Version.Channel.Alpha
 
 /**
  * An object containing params for the Library
@@ -8,7 +8,7 @@ import studio.forface.easygradle.dsl.android.Version.Channel.*
  */
 object Project {
 
-    val version = Version(0, 2, Alpha, 3, 0)
+    val version = Version(0, 2, Alpha, 4, 0)
     const val targetSdk = 28
     const val minSdk = 16
 }

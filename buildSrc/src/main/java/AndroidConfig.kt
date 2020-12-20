@@ -18,14 +18,14 @@ fun org.gradle.api.Project.android(
     apply(plugin = "kotlin-android-extensions")
 
     extensions.configure<TestedExtension>("android") {
-        compileSdkVersion(Project.targetSdk)
+        compileSdkVersion(FluentNotifications.targetSdk)
         defaultConfig {
 
             appId?.let { applicationId = appId }
-            version = Project.version
+            version = FluentNotifications.version
 
-            minSdkVersion(Project.minSdk)
-            targetSdkVersion(Project.targetSdk)
+            minSdkVersion(FluentNotifications.minSdk)
+            targetSdkVersion(FluentNotifications.targetSdk)
 
             testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
             vectorDrawables.useSupportLibrary = true

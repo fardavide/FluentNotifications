@@ -6,9 +6,9 @@ import studio.forface.easygradle.dsl.android.Version.Channel.Alpha
  *
  * @author Davide Giuseppe Farella
  */
-object Project {
+object FluentNotifications {
 
-    val version = Version(0, 2, Alpha, 4, 0)
+    val version = Version(0, 2, Alpha, 5, 0)
     const val targetSdk = 28
     const val minSdk = 16
 }

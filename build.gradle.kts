@@ -1,6 +1,7 @@
-initVersions()
 
 buildscript {
+    initVersions()
+
     repositories(repos)
     dependencies {
         classpath(`kotlin-gradle-plugin`)
@@ -13,6 +14,9 @@ allprojects {
 }
 
 subprojects {
+    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+        kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
     tasks.withType(Javadoc::class).all { enabled = false }
 }
 

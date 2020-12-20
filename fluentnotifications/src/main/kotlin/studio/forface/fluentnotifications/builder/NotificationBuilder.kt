@@ -13,12 +13,7 @@ import androidx.core.app.NotificationCompat.BADGE_ICON_SMALL
 import studio.forface.fluentnotifications.NotificationDsl
 import studio.forface.fluentnotifications.enum.GroupBehaviour
 import studio.forface.fluentnotifications.enum.NotificationCategory
-import studio.forface.fluentnotifications.utils.EMPTY_STRING
-import studio.forface.fluentnotifications.utils.ResourcedBuilder
-import studio.forface.fluentnotifications.utils.invoke
-import studio.forface.fluentnotifications.utils.optional
-import studio.forface.fluentnotifications.utils.required
-import studio.forface.fluentnotifications.utils.setDefaults
+import studio.forface.fluentnotifications.utils.*
 import kotlin.reflect.full.primaryConstructor
 
 /**
@@ -133,7 +128,7 @@ open class NotificationBuilder @PublishedApi /* Needed for inline */ internal co
     }
 
     /**
-     * OPTIONAL [PendingIntent] or add an action on Content
+     * OPTIONAL [PendingIntent] for add an action on Content
      * @see NotificationCompat.Builder.setContentIntent
      *
      * @param autoCancel [Boolean] whether the Notification need to be cancel on Content Action
@@ -143,6 +138,19 @@ open class NotificationBuilder @PublishedApi /* Needed for inline */ internal co
     fun onContentAction( pendingIntent: PendingIntent, autoCancel: Boolean = true ) {
         contentIntent = pendingIntent
         autoCancelOnContentAction = autoCancel
+    }
+
+    /**
+     * OPTIONAL [PendingIntent] for add an fullscreen action
+     * @see NotificationCompat.Builder.setFullScreenIntent
+     *
+     * @param highPriority [Boolean] whether the Notification need to be sent even if other
+     *  notifications are suppressed
+     *  Default is `true`
+     */
+    fun fullscreenIntent(pendingIntent: PendingIntent, highPriority: Boolean = true) {
+        fullscreenIntent = pendingIntent
+        highPriorityFullscreenIntent = highPriority
     }
 
     /**
@@ -174,6 +182,9 @@ open class NotificationBuilder @PublishedApi /* Needed for inline */ internal co
     /** An OPTIONAL [PendingIntent] for [NotificationCompat.Builder.setContentIntent] */
     private var contentIntent : PendingIntent? by optional()
 
+    private var fullscreenIntent: PendingIntent? by optional()
+    private var highPriorityFullscreenIntent = true
+
     /** Whether the Notification need to be cancel on Content Action ( [NotificationCompat.Builder.setAutoCancel] ) */
     private var autoCancelOnContentAction = false
 
@@ -199,6 +210,9 @@ open class NotificationBuilder @PublishedApi /* Needed for inline */ internal co
             setSound( behaviour.soundUri )
             setVibrate( behaviour.vibrationPattern )
             setOngoing(!cleanable)
+
+            /* Fullscreen */
+            fullscreenIntent?.let { setFullScreenIntent(it, highPriorityFullscreenIntent) }
 
             /* Style */
             setSmallIcon( smallIconRes )

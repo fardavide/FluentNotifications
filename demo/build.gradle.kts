@@ -22,5 +22,6 @@ dependencies {
         `appcompat`,
         `constraint-layout`,
         `android-ktx`,
-        `material`)
+        `material`
+    )
 }

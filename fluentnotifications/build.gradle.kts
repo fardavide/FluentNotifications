@@ -28,5 +28,5 @@ dependencies {
 
 dokka()
 publishAndroid {
-    version = Project.version.versionName
+    version = FluentNotifications.version.versionName
 }
